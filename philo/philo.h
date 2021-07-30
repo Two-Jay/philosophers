@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/29 05:04:37 by jekim             #+#    #+#             */
-/*   Updated: 2021/07/30 21:01:48 by jekim            ###   ########seoul.kr  */
+/*   Updated: 2021/07/31 02:34:03 by jekim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ typedef struct s_data
 {
 	struct s_philo	*philo_arr;
 	struct s_fork	*fork_arr;
+	int				*params_arr;
 	int				number_philo;
 	int				number_must_eat;
 	int				T_eat;
@@ -43,11 +44,11 @@ typedef struct s_data
 }				t_data;
 
 // validate.c
-t_data	*fn_datanew(void);
+t_data	*fn_datanew(int argc);
 int		fn_set_params(int argc, char **argv, t_data *data);
 
 // utils.c
-int		fn_print_err(char *err);
-int		fn_clear_data(t_data *data);
+int		fn_print_err(char *err, t_data *data);
+int		fn_clear_data(t_data *data, int ret);
 
 #endif
