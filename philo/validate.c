@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/30 19:40:40 by jekim             #+#    #+#             */
-/*   Updated: 2021/07/31 02:38:42 by jekim            ###   ########seoul.kr  */
+/*   Updated: 2021/07/31 02:48:06 by jekim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ int	fn_assign_data(int argc, t_data *data)
 	data->T_sleep = data->params_arr[3];
 	if (argc == 6)
 		data->number_must_eat = data->params_arr[4];
+	free(data->params_arr);
 	return (0);
 }
 

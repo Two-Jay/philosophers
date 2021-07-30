@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/30 20:13:05 by jekim             #+#    #+#             */
-/*   Updated: 2021/07/31 02:33:46 by jekim            ###   ########seoul.kr  */
+/*   Updated: 2021/07/31 02:45:50 by jekim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,6 @@ int	fn_clear_data(t_data *data, int ret)
 {
 	free(data->philo_arr);
 	free(data->fork_arr);
-	free(data->params_arr);
 	free(data);
 	return (ret);
 }

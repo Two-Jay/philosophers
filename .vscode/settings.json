@@ -1,5 +1,14 @@
 {
 	"files.associations": {
-		"philo.h": "c"
+		"philo.h": "c",
+		"__locale": "cpp",
+		"atomic": "cpp",
+		"cstdlib": "cpp",
+		"locale": "cpp",
+		"ostream": "cpp",
+		"typeinfo": "cpp",
+		"algorithm": "cpp",
+		"complex": "cpp",
+		"new": "cpp"
 	}
 }
