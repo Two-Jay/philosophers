@@ -6,14 +6,16 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/29 05:04:37 by jekim             #+#    #+#             */
-/*   Updated: 2021/07/29 13:17:55 by jekim            ###   ########seoul.kr  */
+/*   Updated: 2021/07/30 19:58:45 by jekim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
 
-# include <stdio.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include <pthread.h>
 # include "../libft/libft.h"
 
 typedef struct s_philo
@@ -38,5 +40,7 @@ typedef struct s_data
 	int				T_sleep;
 	int				T_die;
 }				t_data;
+
+t_data	*fn_datanew(void);
 
 #endif

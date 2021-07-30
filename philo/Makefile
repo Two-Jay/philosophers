@@ -6,7 +6,7 @@
 #    By: jekim <arabi1549@naver.com>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/29 16:43:27 by jekim             #+#    #+#              #
-#    Updated: 2021/07/29 05:16:41 by jekim            ###   ########seoul.kr   #
+#    Updated: 2021/07/30 19:51:24 by jekim            ###   ########seoul.kr   #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,14 +22,14 @@ LIBFT_DIR	=	../libft/
 OBJ_DIR		=	./obj/
 LIBFT		=	$(LIBFT_DIR)libft.a
 
-P_FILE		=	philo.c
+P_FILE		=	philo.c validate.c
 
 P_OBJ_FILE	=	$(P_FILE:.c=.o)
 P_OBJ		=	$(addprefix $(OBJ_DIR), $(P_OBJ_FILE))
 
 all			:	$(NAME)
 
-$(OBJ_DIR)%.o : %.c
+$(OBJ_DIR)%.o : ./%.c
 	@mkdir -p $(OBJ_DIR)
 	@$(CC) $(CCFLAG) $(INCLUDE) $< -c -o $@
 

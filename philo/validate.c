@@ -1,23 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo.c                                            :+:      :+:    :+:   */
+/*   validate.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/29 05:06:14 by jekim             #+#    #+#             */
-/*   Updated: 2021/07/30 19:48:52 by jekim            ###   ########seoul.kr  */
+/*   Created: 2021/07/30 19:40:40 by jekim             #+#    #+#             */
+/*   Updated: 2021/07/30 19:52:02 by jekim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./philo.h"
 
-int	main(void)
+t_data	*fn_datanew(void)
 {
 	t_data	*data;
 
-	data = fn_datanew();
-	ft_printf("data pointer [%p]\n", &data);
-	ft_printf("data T_eat [%d]\n", data->T_eat);
+	data = (t_data *)malloc(sizeof(data));
+	data->philo_arr = NULL;
+	data->fork_arr = NULL;
+	return (data);
+}
+
+int fn_validate_input(int argc, char **argv, t_data *data)
+{
+	(void)argc;
+	(void)argv;
+	(void)data;
 	return (0);
 }
