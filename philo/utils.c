@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/30 20:13:05 by jekim             #+#    #+#             */
-/*   Updated: 2021/07/31 02:45:50 by jekim            ###   ########seoul.kr  */
+/*   Updated: 2021/07/31 08:58:31 by jekim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,4 +25,12 @@ int	fn_clear_data(t_data *data, int ret)
 	free(data->fork_arr);
 	free(data);
 	return (ret);
+}
+
+long	fn_gettime_milisec(void)
+{
+	struct timeval	time;
+
+	gettimeofday(&time, NULL);
+	return (time.tv_sec * 1000 + time.tv_usec / 1000);
 }

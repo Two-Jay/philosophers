@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/29 05:04:37 by jekim             #+#    #+#             */
-/*   Updated: 2021/07/31 02:34:03 by jekim            ###   ########seoul.kr  */
+/*   Updated: 2021/07/31 08:58:49 by jekim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,10 @@
 
 # include <unistd.h>
 # include <stdlib.h>
+# include <stdio.h>
 # include <pthread.h>
+# include <sys/time.h>
+# include <time.h>
 # include "../libft/libft.h"
 
 typedef struct s_philo
@@ -50,5 +53,6 @@ int		fn_set_params(int argc, char **argv, t_data *data);
 // utils.c
 int		fn_print_err(char *err, t_data *data);
 int		fn_clear_data(t_data *data, int ret);
+long	fn_gettime_milisec(void);
 
 #endif
