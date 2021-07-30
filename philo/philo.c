@@ -6,18 +6,17 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/29 05:06:14 by jekim             #+#    #+#             */
-/*   Updated: 2021/07/30 19:48:52 by jekim            ###   ########seoul.kr  */
+/*   Updated: 2021/07/30 21:03:11 by jekim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./philo.h"
 
-int	main(void)
+int	main(int argc, char **argv)
 {
 	t_data	*data;
 
 	data = fn_datanew();
-	ft_printf("data pointer [%p]\n", &data);
-	ft_printf("data T_eat [%d]\n", data->T_eat);
+	fn_set_params(argc, argv, data);
 	return (0);
 }

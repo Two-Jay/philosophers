@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/29 05:04:37 by jekim             #+#    #+#             */
-/*   Updated: 2021/07/30 19:58:45 by jekim            ###   ########seoul.kr  */
+/*   Updated: 2021/07/30 21:01:48 by jekim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 
 typedef struct s_philo
 {
+	int	id;
 	int	state;
 	int	L_fork;
 	int	R_fork;
@@ -41,6 +42,12 @@ typedef struct s_data
 	int				T_die;
 }				t_data;
 
+// validate.c
 t_data	*fn_datanew(void);
+int		fn_set_params(int argc, char **argv, t_data *data);
+
+// utils.c
+int		fn_print_err(char *err);
+int		fn_clear_data(t_data *data);
 
 #endif

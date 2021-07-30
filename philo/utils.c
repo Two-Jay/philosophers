@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/30 20:13:05 by jekim             #+#    #+#             */
-/*   Updated: 2021/07/30 20:20:27 by jekim            ###   ########seoul.kr  */
+/*   Updated: 2021/07/30 21:02:28 by jekim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,8 @@ int	fn_print_err(char *err)
 
 int	fn_clear_data(t_data *data)
 {
-	int	ix;
-
-	ix = 0;
-	while (data->philo_arr[ix])
-		free(data->philo_arr[ix++]);
-	ix = 0;
-	while (data->fork_arr[ix])
-		free(data->fork_arr[ix++]);
+	free(data->philo_arr);
+	free(data->fork_arr);
 	free(data);
 	return (0);
 }
