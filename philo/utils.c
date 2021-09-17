@@ -5,32 +5,28 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/30 20:13:05 by jekim             #+#    #+#             */
-/*   Updated: 2021/07/31 08:58:31 by jekim            ###   ########seoul.kr  */
+/*   Created: 2021/09/17 02:20:43 by jekim             #+#    #+#             */
+/*   Updated: 2021/09/17 21:57:36 by jekim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "./philo.h"
 
-int	fn_print_err(char *err, t_data *data)
+int ft_strlen(char *s)
 {
-	write(2, err, ft_strlen(err));
-	fn_clear_data(data, 0);
-	return (1);
+	int i;
+
+	i = 0;
+	while (*(s + i++))
+		;
+	return (i);
 }
 
-int	fn_clear_data(t_data *data, int ret)
+int ft_strerr(char *err)
 {
-	free(data->philo_arr);
-	free(data->fork_arr);
-	free(data);
-	return (ret);
-}
-
-long	fn_gettime_milisec(void)
-{
-	struct timeval	time;
-
-	gettimeofday(&time, NULL);
-	return (time.tv_sec * 1000 + time.tv_usec / 1000);
+	int errlen;
+	
+	errlen = ft_strlen(err);
+	write(1, err, errlen);
+	exit(EXIT_FAILURE);
 }
