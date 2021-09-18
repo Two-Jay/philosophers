@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 23:07:15 by jekim             #+#    #+#             */
-/*   Updated: 2021/09/18 23:52:00 by jekim            ###   ########seoul.kr  */
+/*   Updated: 2021/09/19 00:56:47 by jekim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,6 @@ int	ft_isspace(char ch)
 		|| ch == '\f' || ch == '\r');
 }
 
-/*
-** if the str is able to convert nbr type (int, long, long long us int...)
-** this function will returns 1, if not, 0.
-*/
 int	ft_isable_strtonbr(char *nbr)
 {
 	int	ret;
@@ -40,10 +36,6 @@ int	ft_isable_strtonbr(char *nbr)
 	return (ret);
 }
 
-/*
-** return int nbr when the value of nbr is between INTMAX and INTMIN
-** if an overflow occur, returns 1 and adds a value on ovf_flag pointer
-*/
 int	ft_atoi_covf(const char *nptr, int *ovf_flag)
 {
 	long long	nbr;

@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 02:20:43 by jekim             #+#    #+#             */
-/*   Updated: 2021/09/18 23:10:19 by jekim            ###   ########seoul.kr  */
+/*   Updated: 2021/09/19 01:04:44 by jekim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,4 +31,10 @@ int ft_strerr(char *err)
 	exit(EXIT_FAILURE);
 }
 
+unsigned long	fn_gettimenow(void)
+{
+	static struct timeval tv;
 
+	gettimeofday(&tv, NULL);
+	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
+}
