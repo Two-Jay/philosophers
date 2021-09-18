@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 02:19:07 by jekim             #+#    #+#             */
-/*   Updated: 2021/09/19 02:31:26 by jekim            ###   ########seoul.kr  */
+/*   Updated: 2021/09/19 02:58:02 by jekim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ typedef struct s_philo
 	int				id;
 	int				l_fork;
 	int				r_fork;
-	unsigned long 	last_eat_time;
+	unsigned long	last_eat_time;
 	int				state;
 }	t_philo;
 
@@ -44,9 +44,11 @@ typedef struct s_data
 	int				number_of_time_must_eat;
 }	t_data;
 
-
 // dc.c
 int				free_data(t_data *data);
+
+// routine.c
+void			*routine(void *ix);
 
 // validator.c
 int				init_data(t_data *data);

@@ -1,38 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils.c                                            :+:      :+:    :+:   */
+/*   routine.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/17 02:20:43 by jekim             #+#    #+#             */
-/*   Updated: 2021/09/19 02:44:35 by jekim            ###   ########seoul.kr  */
+/*   Created: 2021/09/19 02:57:30 by jekim             #+#    #+#             */
+/*   Updated: 2021/09/19 02:58:44 by jekim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./philo.h"
+#include "philo.h"
 
-int	ft_strlen(char *s)
+void	*routine(void *ix)
 {
 	int	i;
 
-	i = 0;
-	while (*(s + i++))
-		;
-	return (i);
-}
-
-int	ft_strerr(char *err)
-{
-	if (err)
-		write(2, err, ft_strlen(err));
-	return (ERROR_OCCURED);
-}
-
-unsigned long	fn_gettimenow(void)
-{
-	static struct timeval tv;
-
-	gettimeofday(&tv, NULL);
-	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
+	i = *((int *)ix);
+	printf("%dth thread was created\n", i);
+	printf("%dth thread runs at %lu\n", i, fn_gettimenow());
+	return (NULL);
 }

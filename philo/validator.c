@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 00:41:24 by jekim             #+#    #+#             */
-/*   Updated: 2021/09/19 02:31:59 by jekim            ###   ########seoul.kr  */
+/*   Updated: 2021/09/19 02:44:11 by jekim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,4 +48,3 @@ int	validate_arg(int argc, char **argv)
 	}
 	return ((ix != argc));
 }
-
