@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 23:07:15 by jekim             #+#    #+#             */
-/*   Updated: 2021/09/19 00:56:47 by jekim            ###   ########seoul.kr  */
+/*   Updated: 2021/09/19 02:30:38 by jekim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,44 +34,6 @@ int	ft_isable_strtonbr(char *nbr)
 		nbr++;
 	}
 	return (ret);
-}
-
-int	ft_atoi_covf(const char *nptr, int *ovf_flag)
-{
-	long long	nbr;
-	int			sign;
-	int			ix;
-
-	nbr = 0;
-	ix = 0;
-	sign = 1;
-	while (nptr[ix] && ft_isspace(nptr[ix]))
-		ix++;
-	if (nptr[ix] == '-')
-		sign = -1;
-	if (nptr[ix] == '-' || nptr[ix] == '+')
-		ix++;
-	while (nptr[ix] && ('0' <= nptr[ix] && nptr[ix] <= '9'))
-		nbr = (nbr * 10) + (nptr[ix++] - '0');
-	if (ft_isoverflow(nbr * sign) == 1 || ft_isoverflow(nbr * sign) == -1)
-		return (++(*ovf_flag));
-	else
-		return ((int)(nbr * sign));
-}
-
-int	ft_isoverflow(long long nbr)
-{
-	long long	max;
-	long long	min;
-
-	max = 2147483647;
-	min = -2147483648;
-	if (nbr > max)
-		return (1);
-	if (nbr < min)
-		return (-1);
-	else
-		return (0);
 }
 
 int	ft_atoi(const char *nptr)

@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/19 01:52:06 by jekim             #+#    #+#             */
-/*   Updated: 2021/09/19 01:58:50 by jekim            ###   ########seoul.kr  */
+/*   Updated: 2021/09/19 02:29:29 by jekim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,14 @@ int	assign_philo(t_data *data)
 		return (ERROR_OCCURED);
 	while (ix < data->number_of_philo)
 	{
-		data->philo[ix].id = ix + 1;
 		data->philo[ix].tid = (pthread_t *)malloc(sizeof(pthread_t));
+		if (!data->philo[ix].tid)
+			return (ERROR_OCCURED);
+		data->philo[ix].id = ix + 1;
+		data->philo[ix].l_fork = ix;
+		data->philo[ix].r_fork = ix;
+		data->philo[ix].last_eat_time = 0;
+		data->philo[ix].state = 0;
 		ix++;
 	}
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 02:19:07 by jekim             #+#    #+#             */
-/*   Updated: 2021/09/19 01:58:17 by jekim            ###   ########seoul.kr  */
+/*   Updated: 2021/09/19 02:31:26 by jekim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,23 +44,25 @@ typedef struct s_data
 	int				number_of_time_must_eat;
 }	t_data;
 
-//dc.c
+
+// dc.c
 int				free_data(t_data *data);
 
 // validator.c
 int				init_data(t_data *data);
 int				check_argc(int argc);
 int				validate_arg(int argc, char **argv);
+
+// assignment.c
 int				assign_data(t_data *data, int argc, char **argv);
 int				assign_philo(t_data *data);
 
-//utils.c
+// utils.c
 int				ft_strlen(char *s);
 int				ft_strerr(char *err);
 int				ft_isspace(char ch);
 int				ft_isable_strtonbr(char *nbr);
 int				ft_atoi(const char *nptr);
-int				ft_isoverflow(long long nbr);
 unsigned long	fn_gettimenow(void);
 
 #endif

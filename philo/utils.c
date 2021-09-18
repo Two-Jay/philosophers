@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 02:20:43 by jekim             #+#    #+#             */
-/*   Updated: 2021/09/19 01:04:44 by jekim            ###   ########seoul.kr  */
+/*   Updated: 2021/09/19 02:34:24 by jekim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,9 @@ int ft_strlen(char *s)
 
 int ft_strerr(char *err)
 {
-	int errlen;
-	
-	errlen = ft_strlen(err);
-	write(2, err, errlen);
-	exit(EXIT_FAILURE);
+	if (err)
+		write(2, err, ft_strlen(err));
+	return (1);
 }
 
 unsigned long	fn_gettimenow(void)
