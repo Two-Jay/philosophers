@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 02:20:43 by jekim             #+#    #+#             */
-/*   Updated: 2021/09/17 21:57:36 by jekim            ###   ########seoul.kr  */
+/*   Updated: 2021/09/18 23:10:19 by jekim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ int ft_strerr(char *err)
 	int errlen;
 	
 	errlen = ft_strlen(err);
-	write(1, err, errlen);
+	write(2, err, errlen);
 	exit(EXIT_FAILURE);
 }
+
+

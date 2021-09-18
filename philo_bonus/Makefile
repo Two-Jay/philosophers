@@ -6,24 +6,22 @@
 #    By: jekim <arabi1549@naver.com>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/29 16:43:27 by jekim             #+#    #+#              #
-#    Updated: 2021/09/18 23:46:20 by jekim            ###   ########seoul.kr   #
+#    Updated: 2021/09/18 00:18:16 by jekim            ###   ########seoul.kr   #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		=	philo
+NAME		=	philo_bonus
 
 CC			=	gcc
 CCFLAG		=	-Wall -Wextra -Werror
 PTHRDFLAG	=	-lpthread
-SNTZ		=	-g3
+SNTZ		=	-fsanitize=address -g3
 INCLUDE		=	-I.
 
 OBJ_DIR		=	./obj/
 
 P_FILE		=	philo.c \
-				utils.c \
-				utils2.c \
-				validator.c \
+				utils.c
 
 P_OBJ_FILE	=	$(P_FILE:.c=.o)
 P_OBJ		=	$(addprefix $(OBJ_DIR), $(P_OBJ_FILE))
