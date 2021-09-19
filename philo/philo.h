@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 02:19:07 by jekim             #+#    #+#             */
-/*   Updated: 2021/09/19 16:33:20 by jekim            ###   ########seoul.kr  */
+/*   Updated: 2021/09/19 17:34:34 by jekim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ typedef struct s_fork
 typedef struct s_data
 {
 	int				number_of_philo;
-	unsigned long	time_to_start;
+	struct timeval	time_to_start_tv;
 	unsigned long	time_to_die;
 	unsigned long	time_to_eat;
 	unsigned long	time_to_sleep;
@@ -95,6 +95,6 @@ int				ft_strerr(char *err);
 int				ft_isspace(char ch);
 int				ft_isable_strtonbr(char *nbr);
 int				ft_atoi(const char *nptr);
-unsigned long	fn_gettimenow(void);
+unsigned long	fn_gettimenow(t_data *data);
 
 #endif

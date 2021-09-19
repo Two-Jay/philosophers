@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/19 14:35:41 by jekim             #+#    #+#             */
-/*   Updated: 2021/09/19 16:09:17 by jekim            ###   ########seoul.kr  */
+/*   Updated: 2021/09/19 17:34:08 by jekim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,12 +31,9 @@ static char	*get_message_by_state(t_state state)
 
 int	print_messsage_stdout(t_philo *philo)
 {
-	unsigned long	time_from_start;
-
-	time_from_start = philo->data->time_to_start - fn_gettimenow();
 	pthread_mutex_lock(&(philo->data->isAnyoneDead_mtx));
 	printf("%lu ms %dth philo %s",
-		time_from_start,
+		fn_gettimenow(philo->data),
 		philo->id,
 		get_message_by_state(philo->state));
 	if (philo->data->isAnyoneDead == 0)

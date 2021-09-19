@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/19 01:52:06 by jekim             #+#    #+#             */
-/*   Updated: 2021/09/19 16:35:52 by jekim            ###   ########seoul.kr  */
+/*   Updated: 2021/09/19 17:35:40 by jekim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 int	assign_data(t_setting *set, int argc, char **argv)
 {
+
 	set->data->number_of_philo = ft_atoi(argv[1]);
 	set->data->time_to_die = ft_atoi(argv[2]);
 	set->data->time_to_eat = ft_atoi(argv[3]);
