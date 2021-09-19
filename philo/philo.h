@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 02:19:07 by jekim             #+#    #+#             */
-/*   Updated: 2021/09/19 12:26:03 by jekim            ###   ########seoul.kr  */
+/*   Updated: 2021/09/19 16:33:20 by jekim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,26 @@ typedef enum s_state
 
 typedef struct s_fork
 {
-	int				obj;
+	int				id;
+	int				grabbedby;
 	pthread_mutex_t	fork_m;
 }	t_fork;
 
+typedef struct s_data
+{
+	int				number_of_philo;
+	unsigned long	time_to_start;
+	unsigned long	time_to_die;
+	unsigned long	time_to_eat;
+	unsigned long	time_to_sleep;
+	int				isAnyoneDead;
+	pthread_mutex_t	isAnyoneDead_mtx;
+	int				number_of_time_must_eat;
+}	t_data;
+
 typedef struct s_philo
 {
+	t_data			*data;
 	pthread_t		*tid;
 	int				id;
 	int				l_fork;
@@ -49,31 +63,31 @@ typedef struct s_philo
 	int				state;
 }	t_philo;
 
-typedef struct s_data
+typedef struct s_setting
 {
-	t_philo			*philo;
-	int				number_of_philo;
-	unsigned long	time_to_die;
-	unsigned long	time_to_eat;
-	unsigned long	time_to_sleep;
-	int				isAnyoneDead;
-	int				number_of_time_must_eat;
-}	t_data;
+	t_data	*data;
+	t_philo	*philo;
+	t_fork	*fork;
+}	t_setting;
 
 // dc.c
-int				free_data(t_data *data);
+int				free_data(t_setting *set);
 
 // routine.c
 void			*routine(void *data);
 
 // validator.c
-int				init_data(t_data *data);
+int				init_data(t_setting *setting);
 int				check_argc(int argc);
 int				validate_arg(int argc, char **argv);
 
 // assignment.c
-int				assign_data(t_data *data, int argc, char **argv);
-int				assign_philo(t_data *data);
+int				assign_data(t_setting *set, int argc, char **argv);
+int				assign_philo(t_setting *set);
+int				assign_fork(t_setting *set);
+
+// message.c
+int				print_messsage_stdout(t_philo *philo);
 
 // utils.c
 int				ft_strlen(char *s);

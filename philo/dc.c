@@ -6,15 +6,15 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 12:13:44 by jekim             #+#    #+#             */
-/*   Updated: 2021/09/19 11:31:01 by jekim            ###   ########seoul.kr  */
+/*   Updated: 2021/09/19 15:53:32 by jekim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int free_data(t_data *data)
+int free_data(t_setting *set)
 {
-	(void)data;
+	(void)set;
 	system("leaks philo");
 	return (0);
 }
