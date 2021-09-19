@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/19 01:52:06 by jekim             #+#    #+#             */
-/*   Updated: 2021/09/19 02:29:29 by jekim            ###   ########seoul.kr  */
+/*   Updated: 2021/09/19 12:01:30 by jekim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,11 @@ int	assign_data(t_data *data, int argc, char **argv)
 
 int	assign_philo(t_data *data)
 {
-	int	ix;
+	int		ix;
+	t_state	stat;
 
 	ix = 0;
+	stat = 0;
 	data->philo = (t_philo *)malloc(sizeof(t_philo) * data->number_of_philo);
 	if (!data->philo)
 		return (ERROR_OCCURED);
@@ -47,8 +49,13 @@ int	assign_philo(t_data *data)
 		data->philo[ix].l_fork = ix;
 		data->philo[ix].r_fork = ix;
 		data->philo[ix].last_eat_time = 0;
-		data->philo[ix].state = 0;
+		data->philo[ix].state = stat;
 		ix++;
 	}
 	return (0);
+}
+
+int assign_fork(t_data *data)
+{
+	
 }

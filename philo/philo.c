@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 02:19:10 by jekim             #+#    #+#             */
-/*   Updated: 2021/09/19 02:58:08 by jekim            ###   ########seoul.kr  */
+/*   Updated: 2021/09/19 11:42:23 by jekim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,15 @@ int	run_philo(t_data *data)
 {
 	int ix;
 
-	ix = 1;
-	while (ix <= data->number_of_philo)
+	ix = 0;
+	while (ix < data->number_of_philo)
 	{
-		pthread_create(data->philo[ix - 1].tid, NULL, routine, (void *)&ix);
+		pthread_create(data->philo[ix].tid,
+			NULL,
+			routine,
+			(void *)&data->philo[ix]);
+		pthread_detach(*data->philo[ix].tid);
+		usleep(100); // 순서보장
 		ix++;
 	}
 	return (0);

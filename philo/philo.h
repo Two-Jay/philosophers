@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 02:19:07 by jekim             #+#    #+#             */
-/*   Updated: 2021/09/19 02:58:02 by jekim            ###   ########seoul.kr  */
+/*   Updated: 2021/09/19 12:24:39 by jekim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,22 @@
 # define TRUE 1
 # define ERROR_OCCURED 1
 # define FALSE 0
+
+typedef enum s_state
+{
+	EAT = 0,
+	SLEEP,
+	FORK,
+	THINK,
+	DIE,
+	END,
+}	t_state;
+
+typedef struct s_fork
+{
+	int				obj;
+	pthread_mutex_t	fork_m;
+}	t_fork;
 
 typedef struct s_philo
 {

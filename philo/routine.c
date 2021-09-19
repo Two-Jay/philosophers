@@ -6,18 +6,19 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/19 02:57:30 by jekim             #+#    #+#             */
-/*   Updated: 2021/09/19 02:58:44 by jekim            ###   ########seoul.kr  */
+/*   Updated: 2021/09/19 03:52:26 by jekim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	*routine(void *ix)
+void	*routine(void *phl)
 {
-	int	i;
+	t_philo *philo;
 
-	i = *((int *)ix);
-	printf("%dth thread was created\n", i);
-	printf("%dth thread runs at %lu\n", i, fn_gettimenow());
+	philo = (t_philo *)phl;
+	philo->last_eat_time = fn_gettimenow();
+	printf("%dth thread was created\n", philo->id);
+	printf("%dth thread runs on %lu\n", philo->id, philo->last_eat_time);
 	return (NULL);
 }
