@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 02:19:07 by jekim             #+#    #+#             */
-/*   Updated: 2021/09/19 12:24:39 by jekim            ###   ########seoul.kr  */
+/*   Updated: 2021/09/19 12:26:03 by jekim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ typedef struct s_data
 int				free_data(t_data *data);
 
 // routine.c
-void			*routine(void *ix);
+void			*routine(void *data);
 
 // validator.c
 int				init_data(t_data *data);
