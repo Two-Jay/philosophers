@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/19 01:52:06 by jekim             #+#    #+#             */
-/*   Updated: 2021/09/21 18:23:07 by jekim            ###   ########.fr       */
+/*   Updated: 2021/09/21 20:33:55 by jekim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,15 @@ int	assign_data(t_setting *set, int argc, char **argv)
 	set->data->isAnyoneDead = 0;
 	pthread_mutex_init(&set->data->isAnyoneDead_mtx, NULL);
 	if (argc == 6)
+	{
 		set->data->number_of_time_must_eat = ft_atoi(argv[5]);
+		set->data->number_of_done_to_eat = 0;
+	}
 	else
+	{
 		set->data->number_of_time_must_eat = -1;
+		set->data->number_of_done_to_eat = -1;
+	}
 	return (0);
 }
 

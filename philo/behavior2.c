@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 14:39:02 by jekim             #+#    #+#             */
-/*   Updated: 2021/09/21 18:40:57 by jekim            ###   ########.fr       */
+/*   Updated: 2021/09/21 20:54:59 by jekim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static void take_rfork(t_philo *philo)
         target = &philo->fork[0];
 	target = &philo->fork[philo->id - 1];
 	pthread_mutex_lock(&target->fork_m);
-	philo->l_fork = target->id;
+	philo->r_fork = target->id;
 	target->grabbedby = philo->id;
 	pthread_mutex_unlock(&target->fork_m);
 	philo->state = RFORK;
@@ -54,6 +54,13 @@ int take_forks(t_philo *philo)
 		take_rfork(philo);
 		take_lfork(philo);		
 	}
+	return (0);
+}
+
+int test_take_forks(t_philo *philo)
+{
+	take_rfork(philo);
+	take_lfork(philo);
 	return (0);
 }
 

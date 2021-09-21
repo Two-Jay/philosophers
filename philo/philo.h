@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 02:19:07 by jekim             #+#    #+#             */
-/*   Updated: 2021/09/21 19:31:12 by jekim            ###   ########.fr       */
+/*   Updated: 2021/09/21 20:40:19 by jekim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,7 @@ typedef struct s_data
 	int				isAnyoneDead;
 	pthread_mutex_t	isAnyoneDead_mtx;
 	int				number_of_time_must_eat;
+	int				number_of_done_to_eat;
 }	t_data;
 
 typedef struct s_philo
@@ -110,6 +111,7 @@ unsigned long	fn_gettime_from_lasteat(t_data *data);
 
 // ALL OF BELLOW FUNCTIONS SHOULD BE REMOVED BEFORE THE SUBMISSION.
 int				test_print_assigned_data(t_data *data);
+int				test_take_forks(t_philo *philo);
 
 #endif
 

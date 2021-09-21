@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/19 02:57:30 by jekim             #+#    #+#             */
-/*   Updated: 2021/09/21 19:36:57 by jekim            ###   ########.fr       */
+/*   Updated: 2021/09/21 20:54:02 by jekim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ int do_eat(t_philo *philo, t_data *data)
 	}
 	else
 	{
+		printf("%d %d grapped\n", philo->l_fork, philo->r_fork);
 		philo->state = EAT;
 		print_messsage_stdout(philo);
 		usleep(data->time_to_eat);
@@ -47,7 +48,7 @@ void	*routine(void *phl)
 	philo = (t_philo *)phl;
 	while (1)
 	{
-		if (take_forks(philo)
+		if (test_take_forks(philo)
 			|| do_eat(philo, philo->data)
 			|| leave_forks(philo)
 			|| do_sleep_think(philo, philo->data))
@@ -56,12 +57,11 @@ void	*routine(void *phl)
 		{
 			philo->state = END;
 			print_messsage_stdout(philo);
+			philo->data->number_of_done_to_eat++;
 			break ;
 		}
 		if (philo->data->number_of_time_must_eat > 0)
 			philo->data->number_of_time_must_eat -= 1;
-		if (philo->data->isAnyoneDead)
-			return (NULL);
 	}
 	return (NULL);
 }

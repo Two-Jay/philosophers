@@ -6,7 +6,7 @@
 #    By: jekim <arabi1549@naver.com>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/29 16:43:27 by jekim             #+#    #+#              #
-#    Updated: 2021/09/21 18:05:39 by jekim            ###   ########.fr        #
+#    Updated: 2021/09/21 20:36:18 by jekim            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME		=	philo
 CC			=	gcc
 CCFLAG		=	-Wall -Wextra -Werror
 PTHRDFLAG	=	-lpthread
-G		=	-g
+G			=	-g
 INCLUDE		=	-I.
 
 OBJ_DIR		=	./obj/

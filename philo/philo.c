@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 02:19:10 by jekim             #+#    #+#             */
-/*   Updated: 2021/09/21 19:38:13 by jekim            ###   ########.fr       */
+/*   Updated: 2021/09/21 20:39:19 by jekim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,17 @@ int	run_philo(t_setting *set)
 	return (0);
 }
 
+int run_monitor(t_setting *set)
+{
+	while (1)
+	{
+		if (set->data->isAnyoneDead || (set->data->number_of_done_to_eat == set->data->number_of_philo))
+			break ;
+		usleep(30);
+	}
+	return (0);
+}
+
 int	set_data(t_setting *set, int argc, char **argv)
 {
 	if (init_data(set)
@@ -53,13 +64,8 @@ int	main(int argc, char **argv)
 
 	if (set_data(&set, argc, argv)
 		|| test_print_assigned_data(set.data)
-		|| run_philo(&set))
+		|| run_philo(&set)
+		|| run_monitor(&set))
 		return (ft_strerr("Error\n"));
-	while (1)
-	{
-		if (set.data->isAnyoneDead)
-			break ;
-		usleep(100);
-	}
 	return (free_data(&set));
 }
