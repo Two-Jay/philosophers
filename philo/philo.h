@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 02:19:07 by jekim             #+#    #+#             */
-/*   Updated: 2021/09/21 16:42:59 by jekim            ###   ########.fr       */
+/*   Updated: 2021/09/21 19:31:12 by jekim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ typedef struct s_data
 {
 	int				number_of_philo;
 	struct timeval	time_to_start_tv;
+	struct timeval	time_lasteat_tv;
 	unsigned long	time_to_die;
 	unsigned long	time_to_eat;
 	unsigned long	time_to_sleep;
@@ -78,12 +79,11 @@ int				free_data(t_setting *set);
 
 // behavior.c
 void			*routine(void *phl);
-int				do_sleep_than_think(t_philo *philo, t_data *data);
+int				do_sleep_think(t_philo *philo, t_data *data);
 int				do_eat(t_philo *philo, t_data *data);
 int				do_think(t_philo *philo);
-void 			take_lfork(t_philo *philo);
-void 			take_rfork(t_philo *philo);
-void 			leave_forks(t_philo *philo);
+int				take_forks(t_philo *philo);
+int 			leave_forks(t_philo *philo);
 
 // validator.c
 int				init_data(t_setting *setting);
@@ -106,10 +106,10 @@ int				ft_isspace(char ch);
 int				ft_isable_strtonbr(char *nbr);
 int				ft_atoi(const char *nptr);
 unsigned long	fn_gettimenow(t_data *data);
+unsigned long	fn_gettime_from_lasteat(t_data *data);
 
-// test functions__ ALL OF THOSE FUNCTIONS SHOULD BE REMOVED BEFORE THE SUBMISSION.
-
-int			test_print_assigned_data(t_data *data);
+// ALL OF BELLOW FUNCTIONS SHOULD BE REMOVED BEFORE THE SUBMISSION.
+int				test_print_assigned_data(t_data *data);
 
 #endif
 

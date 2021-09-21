@@ -6,23 +6,17 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/19 02:57:30 by jekim             #+#    #+#             */
-/*   Updated: 2021/09/21 17:48:55 by jekim            ###   ########.fr       */
+/*   Updated: 2021/09/21 19:36:57 by jekim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int do_sleep(t_philo *philo, t_data *data)
+int do_sleep_think(t_philo *philo, t_data *data)
 {
 	philo->state = SLEEP;
 	print_messsage_stdout(philo);
 	usleep(data->time_to_sleep);
-	return (0);
-}
-
-int do_think(t_philo *philo)
-{
-
 	philo->state = THINK;
 	print_messsage_stdout(philo);
 	return (0);
@@ -30,13 +24,20 @@ int do_think(t_philo *philo)
 
 int do_eat(t_philo *philo, t_data *data)
 {
-	take_lfork(philo);
-	take_rfork(philo);
-	usleep(data->time_to_eat);
-	philo->state = EAT;
-	print_messsage_stdout(philo);
-	leave_forks(philo);
-	return (0);
+	if (fn_gettime_from_lasteat(data) > data->time_to_die / 1000)
+	{
+		philo->state = DIE;
+		philo->data->isAnyoneDead++;
+		print_messsage_stdout(philo);
+		return (ERROR_OCCURED);
+	}
+	else
+	{
+		philo->state = EAT;
+		print_messsage_stdout(philo);
+		usleep(data->time_to_eat);
+		return (0);
+	}
 }
 
 void	*routine(void *phl)
@@ -46,9 +47,10 @@ void	*routine(void *phl)
 	philo = (t_philo *)phl;
 	while (1)
 	{
-		if (do_eat(philo, philo->data)
-			|| do_sleep(philo, philo->data)
-			|| do_think(philo))
+		if (take_forks(philo)
+			|| do_eat(philo, philo->data)
+			|| leave_forks(philo)
+			|| do_sleep_think(philo, philo->data))
 			break ;
 		if (philo->data->number_of_time_must_eat == 0)
 		{
@@ -58,6 +60,8 @@ void	*routine(void *phl)
 		}
 		if (philo->data->number_of_time_must_eat > 0)
 			philo->data->number_of_time_must_eat -= 1;
+		if (philo->data->isAnyoneDead)
+			return (NULL);
 	}
 	return (NULL);
 }

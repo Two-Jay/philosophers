@@ -6,7 +6,7 @@
 #    By: jekim <arabi1549@naver.com>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/29 16:43:27 by jekim             #+#    #+#              #
-#    Updated: 2021/09/21 14:54:28 by jekim            ###   ########.fr        #
+#    Updated: 2021/09/21 18:05:39 by jekim            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,7 @@ NAME		=	philo
 CC			=	gcc
 CCFLAG		=	-Wall -Wextra -Werror
 PTHRDFLAG	=	-lpthread
-SNTZ		=	-g3
+G		=	-g
 INCLUDE		=	-I.
 
 OBJ_DIR		=	./obj/
@@ -37,10 +37,10 @@ all			:	$(NAME)
 
 $(OBJ_DIR)%.o : ./%.c
 	@mkdir -p $(OBJ_DIR)
-	@$(CC) $(CCFLAG) $(INCLUDE) $< -c -o $@
+	@$(CC) $(G) $(CCFLAG) $(INCLUDE) $< -c -o $@
 
 $(NAME)		:	$(P_OBJ)
-	@$(CC) $(CCFLAG) $(P_OBJ) $(PTHRDFLAG) $(SNTZ) $(INCLUDE) -o $@
+	@$(CC) $(G) $(CCFLAG) $(P_OBJ) $(PTHRDFLAG)  $(INCLUDE) -o $@
 	@echo "\033[0;92m* $(NAME) program file was created *\033[0m"
 
 clean		:

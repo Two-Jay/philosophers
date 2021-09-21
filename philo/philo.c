@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 02:19:10 by jekim             #+#    #+#             */
-/*   Updated: 2021/09/21 15:24:13 by jekim            ###   ########.fr       */
+/*   Updated: 2021/09/21 19:38:13 by jekim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,5 +55,11 @@ int	main(int argc, char **argv)
 		|| test_print_assigned_data(set.data)
 		|| run_philo(&set))
 		return (ft_strerr("Error\n"));
+	while (1)
+	{
+		if (set.data->isAnyoneDead)
+			break ;
+		usleep(100);
+	}
 	return (free_data(&set));
 }
