@@ -6,7 +6,7 @@
 #    By: jekim <arabi1549@naver.com>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/29 16:43:27 by jekim             #+#    #+#              #
-#    Updated: 2021/09/21 02:24:38 by jekim            ###   ########seoul.kr   #
+#    Updated: 2021/09/21 14:54:28 by jekim            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,8 @@ P_FILE		=	philo.c \
 				utils.c \
 				utils2.c \
 				validator.c \
+				behavior.c	\
+				behavior2.c	\
 				message.c 	\
 				assignment.c \
 				dc.c

@@ -6,26 +6,12 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 02:19:10 by jekim             #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2021/09/19 18:47:42 by jekim            ###   ########.fr       */
-=======
-/*   Updated: 2021/09/21 04:50:48 by jekim            ###   ########seoul.kr  */
->>>>>>> fbfc05e009b753e0be7e3d1644c17594bc218069
+/*   Updated: 2021/09/21 15:24:13 by jekim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-<<<<<<< HEAD
-=======
-void	*routine(void *phl)
-{
-	t_philo *philo;
-
-	philo = (t_philo *)phl;
-	printf("%lums %dth philo seated on the table\n", fn_gettimenow(philo->data), philo->id);
-	return (NULL);
-}
 
 int	run_philo(t_setting *set)
 {
@@ -48,7 +34,6 @@ int	run_philo(t_setting *set)
 	return (0);
 }
 
->>>>>>> fbfc05e009b753e0be7e3d1644c17594bc218069
 int	set_data(t_setting *set, int argc, char **argv)
 {
 	if (init_data(set)
@@ -66,7 +51,9 @@ int	main(int argc, char **argv)
 {
 	t_setting set;
 
-	if (set_data(&set, argc, argv) || run_philo(&set))
+	if (set_data(&set, argc, argv)
+		|| test_print_assigned_data(set.data)
+		|| run_philo(&set))
 		return (ft_strerr("Error\n"));
 	return (free_data(&set));
 }

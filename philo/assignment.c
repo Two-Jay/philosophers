@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/19 01:52:06 by jekim             #+#    #+#             */
-/*   Updated: 2021/09/21 04:51:37 by jekim            ###   ########seoul.kr  */
+/*   Updated: 2021/09/21 15:30:05 by jekim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,15 @@
 int	assign_data(t_setting *set, int argc, char **argv)
 {
 	set->data->number_of_philo = ft_atoi(argv[1]);
-	set->data->time_to_die = ft_atoi(argv[2]);
-	set->data->time_to_eat = ft_atoi(argv[3]);
-	set->data->time_to_sleep = ft_atoi(argv[4]);
+	set->data->time_to_die = ft_atoi(argv[2]) * 1000;
+	set->data->time_to_eat = ft_atoi(argv[3]) * 1000;
+	set->data->time_to_sleep = ft_atoi(argv[4]) * 1000;
 	set->data->isAnyoneDead = 0;
 	pthread_mutex_init(&set->data->isAnyoneDead_mtx, NULL);
 	if (argc == 6)
 		set->data->number_of_time_must_eat = ft_atoi(argv[5]);
 	else
-		set->data->number_of_time_must_eat = 0;
+		set->data->number_of_time_must_eat = -1;
 	return (0);
 }
 
@@ -31,7 +31,7 @@ int validate_assigned_data(t_setting *set)
 {
 	if (set->data->number_of_philo < 2
 		|| set->data->number_of_philo > 200
-		|| set->data->number_of_time_must_eat < 0)
+		|| set->data->number_of_time_must_eat < -1)
 		return (ERROR_OCCURED);	
 	return (0);
 }

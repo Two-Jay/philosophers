@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 02:19:07 by jekim             #+#    #+#             */
-/*   Updated: 2021/09/21 14:29:12 by jekim            ###   ########.fr       */
+/*   Updated: 2021/09/21 15:28:13 by jekim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ typedef enum s_state
 	SLEEP,
 	LFORK,
 	RFORK,
+	DFORK,
 	THINK,
 	DIE,
 	END,
@@ -75,9 +76,13 @@ typedef struct s_setting
 // dc.c
 int				free_data(t_setting *set);
 
-// routine.c
-void			*routine(void *data);
-int				run_philo(t_setting *set);
+// behavior.c
+void			*routine(void *phl);
+int				do_sleep_than_think(t_philo *philo, t_data *data);
+int				do_eat(t_philo *philo, t_data *data);
+void 			take_lfork(t_philo *philo);
+void 			take_rfork(t_philo *philo);
+void 			leave_forks(t_philo *philo);
 
 // validator.c
 int				init_data(t_setting *setting);
@@ -101,4 +106,10 @@ int				ft_isable_strtonbr(char *nbr);
 int				ft_atoi(const char *nptr);
 unsigned long	fn_gettimenow(t_data *data);
 
+// test functions__ ALL OF THOSE FUNCTIONS SHOULD BE REMOVED BEFORE THE SUBMISSION.
+
+int			test_print_assigned_data(t_data *data);
+
 #endif
+
+
