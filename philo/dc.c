@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 12:13:44 by jekim             #+#    #+#             */
-/*   Updated: 2021/09/19 15:53:32 by jekim            ###   ########seoul.kr  */
+/*   Updated: 2021/09/21 02:32:56 by jekim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,6 @@
 int free_data(t_setting *set)
 {
 	(void)set;
-	system("leaks philo");
+	// system("leaks philo");
 	return (0);
 }

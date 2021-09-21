@@ -6,20 +6,58 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 02:19:10 by jekim             #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2021/09/19 18:47:42 by jekim            ###   ########.fr       */
+=======
+/*   Updated: 2021/09/21 04:50:48 by jekim            ###   ########seoul.kr  */
+>>>>>>> fbfc05e009b753e0be7e3d1644c17594bc218069
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
+<<<<<<< HEAD
+=======
+void	*routine(void *phl)
+{
+	t_philo *philo;
+
+	philo = (t_philo *)phl;
+	printf("%lums %dth philo seated on the table\n", fn_gettimenow(philo->data), philo->id);
+	return (NULL);
+}
+
+int	run_philo(t_setting *set)
+{
+	int ix;
+	struct timeval start;
+
+	ix = 0;
+	gettimeofday(&start, NULL);
+	set->data->time_to_start_tv = start;
+	while (ix < set->data->number_of_philo)
+	{
+		pthread_create(set->philo[ix].tid,
+			NULL,
+			routine,
+			(void *)&set->philo[ix]);
+		pthread_detach(*set->philo[ix].tid);
+		usleep(50);
+		ix++;
+	}
+	return (0);
+}
+
+>>>>>>> fbfc05e009b753e0be7e3d1644c17594bc218069
 int	set_data(t_setting *set, int argc, char **argv)
 {
 	if (init_data(set)
 		|| check_argc(argc)
-		|| validate_arg(argc, argv)
+		|| validate_argv(argc, argv)
 		|| assign_data(set, argc, argv)
 		|| assign_fork(set)
-		|| assign_philo(set))
+		|| assign_philo(set)
+		|| validate_assigned_data(set))
 		return (ERROR_OCCURED);
 	return (0);
 }

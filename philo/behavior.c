@@ -1,33 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   routine.c                                          :+:      :+:    :+:   */
+/*   behavior.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/19 02:57:30 by jekim             #+#    #+#             */
-/*   Updated: 2021/09/19 18:50:34 by jekim            ###   ########.fr       */
+/*   Updated: 2021/09/21 14:29:03 by jekim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void take_lfork(t_philo *philo, t_fork *fork)
+void take_lfork(t_philo *philo)
 {
-	pthread_mutex_lock(fork);
-	philo->l_fork = fork->id;
-	fork->grabbedby = philo->id;
-	pthread_mutex_unlock(fork);
+	t_fork *target;
+
+	target = &philo->fork[philo->id];
+	pthread_mutex_lock(&target->fork_m);
+	philo->l_fork = target->id;
+	target->grabbedby = philo->id;
+	pthread_mutex_unlock(&target->fork_m);
 	philo->state = FORK;
 	print_messsage_stdout(philo);
 }
 
-void take_rfork(t_philo *philo, t_fork *fork)
+void take_rfork(t_philo *philo)
 {
-	pthread_mutex_lock(fork);
-	philo->r_fork = fork->id;
-	fork->grabbedby = philo->id;
-	pthread_mutex_unlock(fork);
+	t_fork *target;
+
+	target = &philo->fork[philo->id + 1];
+	pthread_mutex_lock(&target->fork_m);
+	philo->l_fork = target->id;
+	target->grabbedby = philo->id;
+	pthread_mutex_unlock(&target->fork_m);
 	philo->state = FORK;
 	print_messsage_stdout(philo);
 }
@@ -51,14 +57,14 @@ void take_forks(t_philo *philo)
 
 void leave_forks(t_philo *philo, t_fork *lfork, t_fork *rfork)
 {
-	pthread_mutex_lock(lfork);
 	pthread_mutex_lock(rfork);
 	philo->r_fork = 0;
+	rfork->grabbedby = 0;
+	pthread_mutex_unlock(rfork);
+	pthread_mutex_lock(lfork);
 	philo->l_fork = 0;
 	lfork->grabbedby = 0;
-	rfork->grabbedby = 0;
-	pthread_mutex_unlock(fork);
-	pthread_mutex_unlock(fork);
+	pthread_mutex_unlock(lfork);
 }
 
 int sleep(t_philo *philo, t_data *data)
@@ -76,47 +82,20 @@ int think(t_philo *philo)
 
 int eat(t_philo *philo, t_data *data)
 {
-	take_lfork(philo, fork[philo->id + 1]);
-	take_rfork(philo, fork[philo->id]);
-	philo->state = EAT;
-	print_messsage_stdout(philo);
-	usleep(data->time_to_eat);
-	leave_forks(philo, fork[philo->id + 1], fork[philo->id]);
-}
-
-void	*routine(void *phl)
-{
-	t_philo *philo;
-
-	philo = (t_philo *)phl;
-	philo->data->time_to_start = fn_gettimenow();
-	while (1)
+	take_lfork(philo);
+	take_rfork(philo);
+	if (fn_gettimenow(philo) > philo->last_eat_time)
 	{
-		if (eat()
-			|| sleep()
-			|| think())
-			break ;
+		leave_forks(philo, fork[philo->id + 1], fork[philo->id]);
+		return (ERROR_OCCURED);
 	}
-	return (NULL);
-}
-
-int	run_philo(t_setting *set)
-{
-	int ix;
-	struct timeval start;
-
-	ix = 0;
-	gettimeofday(&start, NULL);
-	set->data->time_to_start_tv = start;
-	while (ix < set->data->number_of_philo)
+	else
 	{
-		pthread_create(set->philo[ix].tid,
-			NULL,
-			routine,
-			(void *)&set->philo[ix]);
-		pthread_detach(*set->philo[ix].tid);
-		usleep(100); // 순서보장
-		ix++;
+		usleep(data->time_to_eat);
+		philo->state = EAT;
+		print_messsage_stdout(philo);
+		leave_forks(philo, fork[philo->id + 1], fork[philo->id]);
 	}
 	return (0);
 }
+

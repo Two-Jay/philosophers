@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 02:19:07 by jekim             #+#    #+#             */
-/*   Updated: 2021/09/19 18:49:51 by jekim            ###   ########.fr       */
+/*   Updated: 2021/09/21 14:29:12 by jekim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ typedef struct s_data
 typedef struct s_philo
 {
 	t_data			*data;
+	t_fork			*fork;
 	pthread_t		*tid;
 	int				id;
 	int				l_fork;
@@ -81,12 +82,13 @@ int				run_philo(t_setting *set);
 // validator.c
 int				init_data(t_setting *setting);
 int				check_argc(int argc);
-int				validate_arg(int argc, char **argv);
+int				validate_argv(int argc, char **argv);
 
 // assignment.c
 int				assign_data(t_setting *set, int argc, char **argv);
 int				assign_philo(t_setting *set);
 int				assign_fork(t_setting *set);
+int				validate_assigned_data(t_setting *set);
 
 // message.c
 int				print_messsage_stdout(t_philo *philo);

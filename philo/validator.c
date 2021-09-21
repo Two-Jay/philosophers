@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 00:41:24 by jekim             #+#    #+#             */
-/*   Updated: 2021/09/19 15:58:16 by jekim            ###   ########seoul.kr  */
+/*   Updated: 2021/09/21 03:09:52 by jekim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	check_argc(int argc)
 	return ((argc != 5 && argc != 6));
 }
 
-int	validate_arg(int argc, char **argv)
+int	validate_argv(int argc, char **argv)
 {
 	int	ix;
 	int	ret;
