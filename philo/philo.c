@@ -6,11 +6,20 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 02:19:10 by jekim             #+#    #+#             */
-/*   Updated: 2021/09/19 17:36:32 by jekim            ###   ########seoul.kr  */
+/*   Updated: 2021/09/21 04:50:48 by jekim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+void	*routine(void *phl)
+{
+	t_philo *philo;
+
+	philo = (t_philo *)phl;
+	printf("%lums %dth philo seated on the table\n", fn_gettimenow(philo->data), philo->id);
+	return (NULL);
+}
 
 int	run_philo(t_setting *set)
 {
@@ -27,7 +36,7 @@ int	run_philo(t_setting *set)
 			routine,
 			(void *)&set->philo[ix]);
 		pthread_detach(*set->philo[ix].tid);
-		usleep(100); // 순서보장
+		usleep(50);
 		ix++;
 	}
 	return (0);
@@ -37,10 +46,11 @@ int	set_data(t_setting *set, int argc, char **argv)
 {
 	if (init_data(set)
 		|| check_argc(argc)
-		|| validate_arg(argc, argv)
+		|| validate_argv(argc, argv)
 		|| assign_data(set, argc, argv)
 		|| assign_fork(set)
-		|| assign_philo(set))
+		|| assign_philo(set)
+		|| validate_assigned_data(set))
 		return (ERROR_OCCURED);
 	return (0);
 }

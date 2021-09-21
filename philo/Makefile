@@ -6,7 +6,7 @@
 #    By: jekim <arabi1549@naver.com>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/29 16:43:27 by jekim             #+#    #+#              #
-#    Updated: 2021/09/19 15:59:55 by jekim            ###   ########seoul.kr   #
+#    Updated: 2021/09/21 02:24:38 by jekim            ###   ########seoul.kr   #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,9 +25,8 @@ P_FILE		=	philo.c \
 				utils2.c \
 				validator.c \
 				message.c 	\
-				routine.c 	\
 				assignment.c \
-				dc.c 		\
+				dc.c
 
 P_OBJ_FILE	=	$(P_FILE:.c=.o)
 P_OBJ		=	$(addprefix $(OBJ_DIR), $(P_OBJ_FILE))
