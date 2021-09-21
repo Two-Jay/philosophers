@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/19 14:35:41 by jekim             #+#    #+#             */
-/*   Updated: 2021/09/19 17:34:08 by jekim            ###   ########seoul.kr  */
+/*   Updated: 2021/09/19 18:56:54 by jekim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,10 @@
 
 static char	*get_message_by_state(t_state state)
 {
-	if (state == FORK)
-		return ("has taken a fork\n");
+	if (state == LFORK)
+		return ("has taken a fork on the left\n");
+	if (state == RFORK)
+		return ("has taken a fork on the right\n");
 	if (state == EAT)
 		return ("is eating\n");
 	if (state == SLEEP)

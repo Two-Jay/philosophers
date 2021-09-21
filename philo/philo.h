@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 02:19:07 by jekim             #+#    #+#             */
-/*   Updated: 2021/09/19 17:34:34 by jekim            ###   ########seoul.kr  */
+/*   Updated: 2021/09/19 18:49:51 by jekim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ typedef enum s_state
 {
 	EAT = 0,
 	SLEEP,
-	FORK,
+	LFORK,
+	RFORK,
 	THINK,
 	DIE,
 	END,
@@ -75,6 +76,7 @@ int				free_data(t_setting *set);
 
 // routine.c
 void			*routine(void *data);
+int				run_philo(t_setting *set);
 
 // validator.c
 int				init_data(t_setting *setting);

@@ -6,32 +6,11 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 02:19:10 by jekim             #+#    #+#             */
-/*   Updated: 2021/09/19 17:36:32 by jekim            ###   ########seoul.kr  */
+/*   Updated: 2021/09/19 18:47:42 by jekim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-int	run_philo(t_setting *set)
-{
-	int ix;
-	struct timeval start;
-
-	ix = 0;
-	gettimeofday(&start, NULL);
-	set->data->time_to_start_tv = start;
-	while (ix < set->data->number_of_philo)
-	{
-		pthread_create(set->philo[ix].tid,
-			NULL,
-			routine,
-			(void *)&set->philo[ix]);
-		pthread_detach(*set->philo[ix].tid);
-		usleep(100); // 순서보장
-		ix++;
-	}
-	return (0);
-}
 
 int	set_data(t_setting *set, int argc, char **argv)
 {
