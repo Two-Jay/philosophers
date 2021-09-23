@@ -6,7 +6,7 @@
 #    By: jekim <arabi1549@naver.com>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/29 16:43:27 by jekim             #+#    #+#              #
-#    Updated: 2021/09/21 20:36:18 by jekim            ###   ########.fr        #
+#    Updated: 2021/09/21 23:24:46 by jekim            ###   ########seoul.kr   #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ OBJ_DIR		=	./obj/
 P_FILE		=	philo.c \
 				utils.c \
 				utils2.c \
+				test.c 	\
 				validator.c \
 				behavior.c	\
 				behavior2.c	\

@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 02:19:07 by jekim             #+#    #+#             */
-/*   Updated: 2021/09/21 20:40:19 by jekim            ###   ########.fr       */
+/*   Updated: 2021/09/23 13:02:01 by jekim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,7 @@ typedef enum s_state
 {
 	EAT = 0,
 	SLEEP,
-	LFORK,
-	RFORK,
+	FORK,
 	DFORK,
 	THINK,
 	DIE,
@@ -46,7 +45,6 @@ typedef struct s_data
 {
 	int				number_of_philo;
 	struct timeval	time_to_start_tv;
-	struct timeval	time_lasteat_tv;
 	unsigned long	time_to_die;
 	unsigned long	time_to_eat;
 	unsigned long	time_to_sleep;
@@ -65,6 +63,7 @@ typedef struct s_philo
 	int				l_fork;
 	int				r_fork;
 	unsigned long	last_eat_time;
+	struct timeval	last_eat_timeval;
 	int				state;
 }	t_philo;
 
@@ -101,17 +100,20 @@ int				validate_assigned_data(t_setting *set);
 int				print_messsage_stdout(t_philo *philo);
 
 // utils.c
+unsigned long	fn_geteattime(t_philo *philo);
 int				ft_strlen(char *s);
 int				ft_strerr(char *err);
 int				ft_isspace(char ch);
 int				ft_isable_strtonbr(char *nbr);
 int				ft_atoi(const char *nptr);
 unsigned long	fn_gettimenow(t_data *data);
-unsigned long	fn_gettime_from_lasteat(t_data *data);
+int				get_sleep(unsigned long target_time, t_data *data);
 
 // ALL OF BELLOW FUNCTIONS SHOULD BE REMOVED BEFORE THE SUBMISSION.
 int				test_print_assigned_data(t_data *data);
 int				test_take_forks(t_philo *philo);
+void			take_lfork(t_philo *philo);
+void			take_rfork(t_philo *philo);
 
 #endif
 

@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/19 02:57:30 by jekim             #+#    #+#             */
-/*   Updated: 2021/09/21 20:54:02 by jekim            ###   ########.fr       */
+/*   Updated: 2021/09/23 13:15:33 by jekim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ int do_sleep_think(t_philo *philo, t_data *data)
 {
 	philo->state = SLEEP;
 	print_messsage_stdout(philo);
-	usleep(data->time_to_sleep);
+	get_sleep(data->time_to_sleep, data);
+	usleep(data->time_to_sleep * 1000);
 	philo->state = THINK;
 	print_messsage_stdout(philo);
 	return (0);
@@ -24,7 +25,13 @@ int do_sleep_think(t_philo *philo, t_data *data)
 
 int do_eat(t_philo *philo, t_data *data)
 {
-	if (fn_gettime_from_lasteat(data) > data->time_to_die / 1000)
+	philo->state = EAT;
+	print_messsage_stdout(philo);
+	get_sleep(data->time_to_sleep, data);
+	gettimeofday(&philo->last_eat_timeval, NULL);
+	philo->last_eat_time = fn_gettimenow(data);
+	printf("%dth philo dead detecting... %lu ||\n", philo->id, philo->last_eat_time);
+	if (philo->last_eat_time > data->time_to_die)
 	{
 		philo->state = DIE;
 		philo->data->isAnyoneDead++;
@@ -32,14 +39,10 @@ int do_eat(t_philo *philo, t_data *data)
 		return (ERROR_OCCURED);
 	}
 	else
-	{
-		printf("%d %d grapped\n", philo->l_fork, philo->r_fork);
-		philo->state = EAT;
-		print_messsage_stdout(philo);
-		usleep(data->time_to_eat);
 		return (0);
-	}
 }
+
+// 죽음탐지는 어떻게 해야하나?
 
 void	*routine(void *phl)
 {
@@ -48,7 +51,7 @@ void	*routine(void *phl)
 	philo = (t_philo *)phl;
 	while (1)
 	{
-		if (test_take_forks(philo)
+		if (take_forks(philo)
 			|| do_eat(philo, philo->data)
 			|| leave_forks(philo)
 			|| do_sleep_think(philo, philo->data))
