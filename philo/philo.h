@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 02:19:07 by jekim             #+#    #+#             */
-/*   Updated: 2021/09/23 14:34:17 by jekim            ###   ########seoul.kr  */
+/*   Updated: 2021/09/23 19:52:16 by jekim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,10 @@ typedef struct s_data
 {
 	int				number_of_philo;
 	struct timeval	time_to_start_tv;
+	struct timeval	time_checker_tv;
 	unsigned long	time_to_die;
 	unsigned long	time_to_eat;
 	unsigned long	time_to_sleep;
-	unsigned long	time_to_start;
 	int				isAnyoneDead;
 	pthread_mutex_t	isAnyoneDead_mtx;
 	int				number_of_time_must_eat;

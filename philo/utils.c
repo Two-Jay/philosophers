@@ -6,11 +6,11 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 02:20:43 by jekim             #+#    #+#             */
-/*   Updated: 2021/09/23 14:44:33 by jekim            ###   ########seoul.kr  */
+/*   Updated: 2021/09/23 20:27:11 by jekim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "./philo.h"
+#include "philo.h"
 
 int	ft_strlen(char *s)
 {
@@ -41,14 +41,27 @@ unsigned long	fn_gettimenow(t_data *data)
 }
 
 
-int get_sleep(unsigned long target_time, t_data *data)
+int get_sleep(unsigned long target_time, t_data *data, t_philo *philo)
 {
 	unsigned long tmp;
 
 	tmp = target_time + fn_gettimenow(data);
 	while (tmp > fn_gettimenow(data))
-		;
+	{
+		if (check_philo_alive(philo))
+		{
+			leave_forks(philo);
+			return (1);
+		}
+	}
 	return (0);
+}
+
+int check_philo_alive(t_philo *philo)
+{
+	struct timeval now_tv;
+	unsigned long now_time;
+	gettimeofday(&now_time, NULL);
 }
 
 

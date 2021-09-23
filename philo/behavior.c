@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/19 02:57:30 by jekim             #+#    #+#             */
-/*   Updated: 2021/09/23 15:04:45 by jekim            ###   ########seoul.kr  */
+/*   Updated: 2021/09/23 19:29:26 by jekim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,19 +31,19 @@ int do_eat(t_philo *philo, t_data *data)
 	print_messsage_stdout(philo);
 	get_sleep(data->time_to_sleep, data);
 	tmp = fn_gettimenow(data) - philo->last_eat_time;
-	printf("%dth philo dead detecting... %lu || %lu\n", philo->id, tmp, philo->last_eat_time);
-	if (tmp - philo->last_eat_time > data->time_to_die)
-	{
-		philo->state = DIE;
-		philo->data->isAnyoneDead++;
-		print_messsage_stdout(philo);
-		return (ERROR_OCCURED);
-	}
-	else
-	{
-		philo->last_eat_time = tmp;
-		return (0);
-	}
+	// printf("%dth philo dead detecting... %lu || %lu\n", philo->id, tmp, philo->last_eat_time);
+	// if (tmp - philo->last_eat_time > data->time_to_die)
+	// {
+	// 	philo->state = DIE;
+	// 	philo->data->isAnyoneDead++;
+	// 	print_messsage_stdout(philo);
+	// 	return (ERROR_OCCURED);
+	// }
+	// else
+	// {
+	// 	philo->last_eat_time = tmp;
+	// 	return (0);
+	// }
 }
 
 // 죽음탐지는 어떻게 해야하나?
@@ -56,7 +56,7 @@ void	*routine(void *phl)
 	while (1)
 	{
 		if (take_forks(philo)
-			|| do_eat(philo, philo->data)
+			|| do_eat(philo, philo->data) // 
 			|| leave_forks(philo)
 			|| do_sleep_think(philo, philo->data))
 			break ;
