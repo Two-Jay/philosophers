@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 02:20:43 by jekim             #+#    #+#             */
-/*   Updated: 2021/09/23 13:01:42 by jekim            ###   ########seoul.kr  */
+/*   Updated: 2021/09/23 14:44:33 by jekim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int get_sleep(unsigned long target_time, t_data *data)
 
 	tmp = target_time + fn_gettimenow(data);
 	while (tmp > fn_gettimenow(data))
-		usleep(100);
+		;
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 02:19:07 by jekim             #+#    #+#             */
-/*   Updated: 2021/09/23 13:02:01 by jekim            ###   ########seoul.kr  */
+/*   Updated: 2021/09/23 14:34:17 by jekim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,7 @@ typedef struct s_data
 	unsigned long	time_to_die;
 	unsigned long	time_to_eat;
 	unsigned long	time_to_sleep;
+	unsigned long	time_to_start;
 	int				isAnyoneDead;
 	pthread_mutex_t	isAnyoneDead_mtx;
 	int				number_of_time_must_eat;
@@ -63,7 +64,6 @@ typedef struct s_philo
 	int				l_fork;
 	int				r_fork;
 	unsigned long	last_eat_time;
-	struct timeval	last_eat_timeval;
 	int				state;
 }	t_philo;
 

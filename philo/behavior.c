@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/19 02:57:30 by jekim             #+#    #+#             */
-/*   Updated: 2021/09/23 13:15:33 by jekim            ###   ########seoul.kr  */
+/*   Updated: 2021/09/23 15:04:45 by jekim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,14 @@ int do_sleep_think(t_philo *philo, t_data *data)
 
 int do_eat(t_philo *philo, t_data *data)
 {
+	unsigned long tmp;
+
 	philo->state = EAT;
 	print_messsage_stdout(philo);
 	get_sleep(data->time_to_sleep, data);
-	gettimeofday(&philo->last_eat_timeval, NULL);
-	philo->last_eat_time = fn_gettimenow(data);
-	printf("%dth philo dead detecting... %lu ||\n", philo->id, philo->last_eat_time);
-	if (philo->last_eat_time > data->time_to_die)
+	tmp = fn_gettimenow(data) - philo->last_eat_time;
+	printf("%dth philo dead detecting... %lu || %lu\n", philo->id, tmp, philo->last_eat_time);
+	if (tmp - philo->last_eat_time > data->time_to_die)
 	{
 		philo->state = DIE;
 		philo->data->isAnyoneDead++;
@@ -39,7 +40,10 @@ int do_eat(t_philo *philo, t_data *data)
 		return (ERROR_OCCURED);
 	}
 	else
+	{
+		philo->last_eat_time = tmp;
 		return (0);
+	}
 }
 
 // 죽음탐지는 어떻게 해야하나?
