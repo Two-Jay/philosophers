@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 02:20:43 by jekim             #+#    #+#             */
-/*   Updated: 2021/09/23 20:27:11 by jekim            ###   ########.fr       */
+/*   Updated: 2021/09/25 00:28:45 by jekim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	ft_strerr(char *err)
 	return (ERROR_OCCURED);
 }
 
-unsigned long	fn_gettimenow(t_data *data)
+unsigned long	time_from_start(t_data *data)
 {
 	struct timeval	now_tv;
 	struct timeval	start_tv;
@@ -40,32 +40,52 @@ unsigned long	fn_gettimenow(t_data *data)
 		+ ((now_tv.tv_usec - start_tv.tv_usec) / 1000));
 }
 
-
-int get_sleep(unsigned long target_time, t_data *data, t_philo *philo)
+unsigned long	time_diff(struct timeval *start, struct timeval *end)
 {
-	unsigned long tmp;
+	struct timeval	gaptime_tv;
 
-	tmp = target_time + fn_gettimenow(data);
-	while (tmp > fn_gettimenow(data))
+	gaptime_tv.tv_sec = end->tv_sec - start->tv_sec;
+	gaptime_tv.tv_usec = end->tv_usec - start->tv_usec;
+	return (gaptime_tv.tv_sec * 1000 + gaptime_tv.tv_usec / 1000);
+}
+
+int check_philo_health(t_philo *philo, int eat_flag)
+{
+	static unsigned long	modf;
+	static struct timeval	former_tv;
+	struct timeval			now_tv;
+	unsigned long			now_time;
+
+	if (former_tv.tv_sec == 0 && former_tv.tv_usec == 0)
+		former_tv = philo->data->time_to_start_tv;
+	if ((modf++) % 2 == 0 || eat_flag == 1)
 	{
-		if (check_philo_alive(philo))
+		gettimeofday(&now_tv, NULL);
+		now_time = time_diff(&former_tv, &now_tv);
+		if (now_time > philo->data->time_to_die)
 		{
+			philo->state = DIE;
+			philo->data->isAnyoneDead++;
+			print_messsage_stdout(philo);
 			leave_forks(philo);
 			return (1);
 		}
+		if (eat_flag == 1)
+			former_tv = now_tv;
 	}
 	return (0);
 }
 
-int check_philo_alive(t_philo *philo)
+int	get_sleep(unsigned long sleep_time, t_data *data, t_philo *philo)
 {
-	struct timeval now_tv;
-	unsigned long now_time;
-	gettimeofday(&now_time, NULL);
+	unsigned long		target_time;
+
+	target_time = sleep_time + time_from_start(data);
+	while (target_time > time_from_start(data))
+	{
+		usleep(data->number_of_philo / 4);
+		if (check_philo_health(philo, 0))
+			return (1);
+	}
+	return (0);
 }
-
-
-// 분할한 usleep의 총량이 정확한 최근사값으로 딸어질 수 있는 방법
-// usleep return 0 if it success. return n as the remain time.
-// ********반복하는 텀이 짧아서 더 많이 반복하게 된다면... 스레드에서 받는 영향도 증폭되지 않나?...
-// 정수값을 더해주어서

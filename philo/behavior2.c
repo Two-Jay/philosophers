@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 14:39:02 by jekim             #+#    #+#             */
-/*   Updated: 2021/09/23 18:38:00 by jekim            ###   ########.fr       */
+/*   Updated: 2021/09/24 21:47:31 by jekim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,10 @@ int leave_forks(t_philo *philo)
 	lfork->grabbedby = 0;
 	philo->l_fork = 0;
 	pthread_mutex_unlock(&lfork->fork_m);
-	philo->state = DFORK;
-	print_messsage_stdout(philo);
+	if (!philo->data->isAnyoneDead)
+	{
+		philo->state = DFORK;
+		print_messsage_stdout(philo);
+	}
 	return (0);
 }

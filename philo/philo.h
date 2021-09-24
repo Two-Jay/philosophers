@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 02:19:07 by jekim             #+#    #+#             */
-/*   Updated: 2021/09/23 19:52:16 by jekim            ###   ########.fr       */
+/*   Updated: 2021/09/24 23:29:37 by jekim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,14 +100,15 @@ int				validate_assigned_data(t_setting *set);
 int				print_messsage_stdout(t_philo *philo);
 
 // utils.c
-unsigned long	fn_geteattime(t_philo *philo);
 int				ft_strlen(char *s);
 int				ft_strerr(char *err);
 int				ft_isspace(char ch);
 int				ft_isable_strtonbr(char *nbr);
 int				ft_atoi(const char *nptr);
-unsigned long	fn_gettimenow(t_data *data);
-int				get_sleep(unsigned long target_time, t_data *data);
+unsigned long	time_from_start(t_data *data);
+int				check_philo_health(t_philo *philo, int eat_flag);
+int				get_sleep(unsigned long target_time, t_data *data,
+					t_philo *philo);
 
 // ALL OF BELLOW FUNCTIONS SHOULD BE REMOVED BEFORE THE SUBMISSION.
 int				test_print_assigned_data(t_data *data);
@@ -116,5 +117,3 @@ void			take_lfork(t_philo *philo);
 void			take_rfork(t_philo *philo);
 
 #endif
-
-

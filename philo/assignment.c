@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/19 01:52:06 by jekim             #+#    #+#             */
-/*   Updated: 2021/09/22 00:30:15 by jekim            ###   ########seoul.kr  */
+/*   Updated: 2021/09/24 22:42:53 by jekim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,10 @@ int validate_assigned_data(t_setting *set)
 {
 	if (set->data->number_of_philo < 2
 		|| set->data->number_of_philo > 200
-		|| set->data->number_of_time_must_eat < -1)
+		|| set->data->number_of_time_must_eat < -1
+		|| set->data->time_to_die < 60
+		|| set->data->time_to_eat < 60
+		|| set->data->time_to_sleep < 60)
 		return (ERROR_OCCURED);	
 	return (0);
 }

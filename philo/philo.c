@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 02:19:10 by jekim             #+#    #+#             */
-/*   Updated: 2021/09/23 18:38:13 by jekim            ###   ########.fr       */
+/*   Updated: 2021/09/24 23:32:15 by jekim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	run_philo(t_setting *set)
 {
-	int ix;
-	struct timeval start;
+	int				ix;
+	struct timeval	start;
 
 	ix = 0;
 	gettimeofday(&start, NULL);
@@ -32,13 +32,14 @@ int	run_philo(t_setting *set)
 	return (0);
 }
 
-int run_monitor(t_setting *set)
+int	run_monitor(t_setting *set)
 {
 	while (1)
 	{
-		if (set->data->isAnyoneDead || (set->data->number_of_done_to_eat == set->data->number_of_philo))
+		if (set->data->isAnyoneDead
+			|| (set->data->number_of_done_to_eat == set->data->number_of_philo))
 			break ;
-		usleep(100);
+		usleep(50);
 	}
 	return (0);
 }
