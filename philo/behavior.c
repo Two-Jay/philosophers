@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/19 02:57:30 by jekim             #+#    #+#             */
-/*   Updated: 2021/09/26 03:19:14 by jekim            ###   ########seoul.kr  */
+/*   Updated: 2021/09/26 03:37:24 by jekim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,8 @@ int	do_sleep_think(t_philo *philo, t_data *data)
 
 int	do_eat(t_philo *philo, t_data *data)
 {
+	if (data->number_of_philo == 1)
+		get_sleep(2147483600, data, philo);
 	take_forks(philo);
 	philo->state = EAT;
 	print_messsage_stdout(philo);
