@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 02:20:43 by jekim             #+#    #+#             */
-/*   Updated: 2021/09/25 17:36:08 by jekim            ###   ########.fr       */
+/*   Updated: 2021/09/25 17:38:54 by jekim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	get_sleep(unsigned long sleep_time, t_data *data, t_philo *philo)
 
 int	print_messsage_stdout(t_philo *philo)
 {
-	char *msg;
+	char	*msg;
 
 	if (philo->state == FORK)
 		msg = "has taken a fork.\n";

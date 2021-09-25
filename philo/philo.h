@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 02:19:07 by jekim             #+#    #+#             */
-/*   Updated: 2021/09/25 17:36:02 by jekim            ###   ########.fr       */
+/*   Updated: 2021/09/25 17:39:04 by jekim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,9 +19,7 @@
 # include <unistd.h>
 # include <pthread.h>
 
-# define TRUE 1
 # define ERROR_OCCURED 1
-# define FALSE 0
 
 typedef enum s_state
 {
