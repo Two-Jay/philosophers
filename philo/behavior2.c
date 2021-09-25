@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 14:39:02 by jekim             #+#    #+#             */
-/*   Updated: 2021/09/25 17:12:34 by jekim            ###   ########.fr       */
+/*   Updated: 2021/09/25 17:35:57 by jekim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,22 @@
 
 void	take_lfork(t_philo *philo)
 {
-	t_fork	*target;
+	t_fork	*lfork;
 
-	target = &philo->fork[philo->id - 1];
-	pthread_mutex_lock(&target->fork_m);
-	philo->l_fork = target->id;
-	target->grabbedby = philo->id;
+	lfork = &philo->fork[philo->id - 1];
+	pthread_mutex_lock(&lfork->fork_m);
+	philo->l_fork = lfork->id;
+	lfork->grabbedby = philo->id;
 }
 
 void	take_rfork(t_philo *philo)
 {
-	t_fork	*target;
+	t_fork	*rfork;
 
-	target = &philo->fork[philo->id % philo->data->number_of_philo];
-	pthread_mutex_lock(&target->fork_m);
-	philo->r_fork = target->id;
-	target->grabbedby = philo->id;
+	rfork = &philo->fork[philo->id % philo->data->number_of_philo];
+	pthread_mutex_lock(&rfork->fork_m);
+	philo->r_fork = rfork->id;
+	rfork->grabbedby = philo->id;
 }
 
 int	take_forks(t_philo *philo)
@@ -62,10 +62,5 @@ int	leave_forks(t_philo *philo)
 	lfork->grabbedby = 0;
 	philo->l_fork = 0;
 	pthread_mutex_unlock(&lfork->fork_m);
-	if (!philo->data->isAnyoneDead)
-	{
-		philo->state = DFORK;
-		print_messsage_stdout(philo);
-	}
 	return (0);
 }

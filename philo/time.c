@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 02:20:43 by jekim             #+#    #+#             */
-/*   Updated: 2021/09/25 17:32:30 by jekim            ###   ########.fr       */
+/*   Updated: 2021/09/25 17:36:08 by jekim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,8 +77,6 @@ int	print_messsage_stdout(t_philo *philo)
 
 	if (philo->state == FORK)
 		msg = "has taken a fork.\n";
-	if (philo->state == DFORK)
-		msg = "has dropped a fork.\n";
 	if (philo->state == EAT)
 		msg = "is eating.\n";
 	if (philo->state == SLEEP)
