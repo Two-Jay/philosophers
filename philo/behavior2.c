@@ -6,15 +6,15 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 14:39:02 by jekim             #+#    #+#             */
-/*   Updated: 2021/09/24 21:47:31 by jekim            ###   ########seoul.kr  */
+/*   Updated: 2021/09/25 16:39:40 by jekim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void take_lfork(t_philo *philo)
+void	take_lfork(t_philo *philo)
 {
-	t_fork *target;
+	t_fork	*target;
 
 	target = &philo->fork[philo->id - 1];
 	pthread_mutex_lock(&target->fork_m);
@@ -22,9 +22,9 @@ void take_lfork(t_philo *philo)
 	target->grabbedby = philo->id;
 }
 
-void take_rfork(t_philo *philo)
+void	take_rfork(t_philo *philo)
 {
-	t_fork *target;
+	t_fork	*target;
 
 	target = &philo->fork[philo->id % philo->data->number_of_philo];
 	pthread_mutex_lock(&target->fork_m);
@@ -32,7 +32,7 @@ void take_rfork(t_philo *philo)
 	target->grabbedby = philo->id;
 }
 
-int take_forks(t_philo *philo)
+int	take_forks(t_philo *philo)
 {
 	if (philo->id % 2 == 0)
 	{
@@ -49,10 +49,10 @@ int take_forks(t_philo *philo)
 	return (0);
 }
 
-int leave_forks(t_philo *philo)
+int	leave_forks(t_philo *philo)
 {
-	t_fork *rfork;
-	t_fork *lfork;
+	t_fork	*rfork;
+	t_fork	*lfork;
 
 	lfork = &philo->fork[philo->id - 1];
 	rfork = &philo->fork[philo->id % philo->data->number_of_philo];

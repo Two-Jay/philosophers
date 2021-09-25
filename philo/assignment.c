@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/19 01:52:06 by jekim             #+#    #+#             */
-/*   Updated: 2021/09/24 22:42:53 by jekim            ###   ########seoul.kr  */
+/*   Updated: 2021/09/25 16:38:44 by jekim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,17 @@
 
 int	assign_data(t_setting *set, int argc, char **argv)
 {
+	set->data = malloc(sizeof(t_data));
+	if (!set->data)
+		return (ERROR_OCCURED);
 	set->data->number_of_philo = ft_atoi(argv[1]);
 	set->data->time_to_die = ft_atoi(argv[2]);
 	set->data->time_to_eat = ft_atoi(argv[3]);
 	set->data->time_to_sleep = ft_atoi(argv[4]);
+	set->data->isAnyoneDead = 0;
 	pthread_mutex_init(&set->data->isAnyoneDead_mtx, NULL);
+	set->data->number_of_time_must_eat = -1;
+	set->data->number_of_done_to_eat = -1;
 	if (argc == 6)
 	{
 		set->data->number_of_time_must_eat = ft_atoi(argv[5]);
@@ -27,7 +33,7 @@ int	assign_data(t_setting *set, int argc, char **argv)
 	return (0);
 }
 
-int validate_assigned_data(t_setting *set)
+int	validate_assigned_data(t_setting *set)
 {
 	if (set->data->number_of_philo < 2
 		|| set->data->number_of_philo > 200
@@ -35,7 +41,7 @@ int validate_assigned_data(t_setting *set)
 		|| set->data->time_to_die < 60
 		|| set->data->time_to_eat < 60
 		|| set->data->time_to_sleep < 60)
-		return (ERROR_OCCURED);	
+		return (ERROR_OCCURED);
 	return (0);
 }
 
@@ -86,4 +92,26 @@ int	assign_philo(t_setting *set)
 		ix++;
 	}
 	return (0);
+}
+
+int	validate_argv(int argc, char **argv)
+{
+	int	ix;
+	int	ret;
+
+	if ((argc != 5 && argc != 6))
+		return (ERROR_OCCURED);
+	ix = 1;
+	ret = 1;
+	while (ix < argc)
+	{
+		if (argv[ix] && ft_isable_strtonbr(argv[ix]))
+			ix++;
+		else
+		{
+			ret--;
+			break ;
+		}
+	}
+	return ((ix != argc));
 }
