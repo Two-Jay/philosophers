@@ -6,7 +6,7 @@
 #    By: jekim <arabi1549@naver.com>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/29 16:43:27 by jekim             #+#    #+#              #
-#    Updated: 2021/09/25 16:38:19 by jekim            ###   ########.fr        #
+#    Updated: 2021/09/25 17:32:37 by jekim            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,6 @@ P_FILE		=	philo.c \
 				time.c \
 				behavior.c	\
 				behavior2.c	\
-				message.c 	\
 				assignment.c \
 
 P_OBJ_FILE	=	$(P_FILE:.c=.o)
