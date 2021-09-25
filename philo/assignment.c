@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/19 01:52:06 by jekim             #+#    #+#             */
-/*   Updated: 2021/09/25 04:45:50 by jekim            ###   ########seoul.kr  */
+/*   Updated: 2021/09/24 22:42:53 by jekim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,22 +14,28 @@
 
 int	assign_data(t_setting *set, int argc, char **argv)
 {
-	set->data = malloc(sizeof(t_data));
-	if (!set->data)
-		return (1);
 	set->data->number_of_philo = ft_atoi(argv[1]);
 	set->data->time_to_die = ft_atoi(argv[2]);
 	set->data->time_to_eat = ft_atoi(argv[3]);
 	set->data->time_to_sleep = ft_atoi(argv[4]);
-	set->data->isAnyoneDead = 0;
 	pthread_mutex_init(&set->data->isAnyoneDead_mtx, NULL);
-	set->data->number_of_time_must_eat = -1;
-	set->data->number_of_done_to_eat = -1;
 	if (argc == 6)
 	{
 		set->data->number_of_time_must_eat = ft_atoi(argv[5]);
 		set->data->number_of_done_to_eat = 0;
 	}
+	return (0);
+}
+
+int validate_assigned_data(t_setting *set)
+{
+	if (set->data->number_of_philo < 2
+		|| set->data->number_of_philo > 200
+		|| set->data->number_of_time_must_eat < -1
+		|| set->data->time_to_die < 60
+		|| set->data->time_to_eat < 60
+		|| set->data->time_to_sleep < 60)
+		return (ERROR_OCCURED);	
 	return (0);
 }
 
@@ -46,6 +52,7 @@ int	assign_fork(t_setting *set)
 	while (ix < nbr_philo)
 	{
 		set->fork[ix].id = ix + 1;
+		set->fork[ix].grabbedby = 0;
 		pthread_mutex_init(&set->fork[ix].fork_m, NULL);
 		ix++;
 	}
@@ -74,43 +81,9 @@ int	assign_philo(t_setting *set)
 		set->philo[ix].id = ix + 1;
 		set->philo[ix].l_fork = 0;
 		set->philo[ix].r_fork = 0;
-		set->philo[ix].lasteat_tv.tv_sec = 0;
-		set->philo[ix].lasteat_tv.tv_usec = 0;		 
-		set->philo[ix++].state = stat;
+		set->philo[ix].last_eat_time = 0;
+		set->philo[ix].state = stat;
+		ix++;
 	}
-	return (0);
-}
-
-int	validate_argv(int argc, char **argv)
-{
-	int	ix;
-	int	ret;
-
-	ix = 1;
-	ret = 1;
-	if ((argc != 5 && argc != 6))
-		return (1);
-	while (ix < argc)
-	{
-		if (argv[ix] && ft_isable_strtonbr(argv[ix]))
-			ix++;
-		else
-		{
-			ret--;
-			break ;
-		}
-	}
-	return ((ix != argc));
-}
-
-int validate_assigned_data(t_setting *set)
-{
-	if (set->data->number_of_philo < 1
-		|| set->data->number_of_philo > 200
-		|| set->data->number_of_time_must_eat < -1
-		|| set->data->time_to_die < 60
-		|| set->data->time_to_eat < 60
-		|| set->data->time_to_sleep < 60)
-		return (ERROR_OCCURED);
 	return (0);
 }
