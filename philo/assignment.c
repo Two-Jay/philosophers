@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/19 01:52:06 by jekim             #+#    #+#             */
-/*   Updated: 2021/09/25 16:38:44 by jekim            ###   ########.fr       */
+/*   Updated: 2021/09/26 02:49:59 by jekim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	assign_data(t_setting *set, int argc, char **argv)
 
 int	validate_assigned_data(t_setting *set)
 {
-	if (set->data->number_of_philo < 2
+	if (set->data->number_of_philo < 1
 		|| set->data->number_of_philo > 200
 		|| set->data->number_of_time_must_eat < -1
 		|| set->data->time_to_die < 60

@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 02:19:10 by jekim             #+#    #+#             */
-/*   Updated: 2021/09/25 16:41:07 by jekim            ###   ########.fr       */
+/*   Updated: 2021/09/26 03:10:39 by jekim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,12 +42,12 @@ int	run_philo(t_setting *set)
 
 	ix = 0;
 	gettimeofday(&start, NULL);
-	set->data->time_to_start_tv = start;
+	set->data->start_tv = start;
 	while (ix < set->data->number_of_philo)
 	{
 		pthread_create(set->philo[ix].tid,
 			NULL,
-			routine,
+			philo_routine,
 			(void *)&set->philo[ix]);
 		pthread_detach(*set->philo[ix].tid);
 		ix++;
@@ -55,7 +55,7 @@ int	run_philo(t_setting *set)
 	return (0);
 }
 
-int	run_monitor(t_setting *set)
+int	check_isend(t_setting *set)
 {
 	while (1)
 	{
@@ -84,7 +84,7 @@ int	main(int argc, char **argv)
 
 	if (set_data(&set, argc, argv)
 		|| run_philo(&set)
-		|| run_monitor(&set))
+		|| check_isend(&set))
 		return (ft_strerr("Error\n"));
 	return (free_data(&set));
 }

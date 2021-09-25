@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/19 02:57:30 by jekim             #+#    #+#             */
-/*   Updated: 2021/09/25 17:12:28 by jekim            ###   ########.fr       */
+/*   Updated: 2021/09/26 03:19:14 by jekim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,16 @@ int	do_sleep_think(t_philo *philo, t_data *data)
 
 int	do_eat(t_philo *philo, t_data *data)
 {
+	take_forks(philo);
 	philo->state = EAT;
 	print_messsage_stdout(philo);
 	check_philo_health(philo, 1);
 	get_sleep(data->time_to_eat, data, philo);
+	leave_forks(philo);
 	return (0);
 }
 
-int	check_must_eat(t_philo *philo, t_data *data)
+int	check_nbr_must_eat(t_philo *philo, t_data *data)
 {
 	if (data->number_of_time_must_eat == 0)
 	{
@@ -47,17 +49,16 @@ int	check_must_eat(t_philo *philo, t_data *data)
 	return (0);
 }
 
-void	*routine(void *phl)
+void	*philo_routine(void *phl)
 {
 	t_philo	*philo;
 
 	philo = (t_philo *)phl;
+	philo->lasteat_tv = philo->data->start_tv;
 	while (1)
 	{
-		if (take_forks(philo)
-			|| do_eat(philo, philo->data)
-			|| leave_forks(philo)
-			|| check_must_eat(philo, philo->data)
+		if (do_eat(philo, philo->data)
+			|| check_nbr_must_eat(philo, philo->data)
 			|| do_sleep_think(philo, philo->data))
 			break ;
 	}

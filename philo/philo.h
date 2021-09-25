@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 02:19:07 by jekim             #+#    #+#             */
-/*   Updated: 2021/09/25 17:39:04 by jekim            ###   ########.fr       */
+/*   Updated: 2021/09/26 03:10:01 by jekim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,7 @@ typedef struct s_fork
 typedef struct s_data
 {
 	int				number_of_philo;
-	struct timeval	time_to_start_tv;
-	struct timeval	time_checker_tv;
+	struct timeval	start_tv;
 	unsigned long	time_to_die;
 	unsigned long	time_to_eat;
 	unsigned long	time_to_sleep;
@@ -57,6 +56,7 @@ typedef struct s_philo
 	t_data			*data;
 	t_fork			*fork;
 	pthread_t		*tid;
+	struct timeval	lasteat_tv;
 	int				id;
 	int				l_fork;
 	int				r_fork;
@@ -66,12 +66,13 @@ typedef struct s_philo
 
 typedef struct s_setting
 {
-	t_data	*data;
-	t_philo	*philo;
-	t_fork	*fork;
+	t_data		*data;
+	t_philo		*philo;
+	t_fork		*fork;
 }	t_setting;
 
-void			*routine(void *phl);
+void			*philo_routine(void *phl);
+
 int				do_sleep_think(t_philo *philo, t_data *data);
 int				do_eat(t_philo *philo, t_data *data);
 int				do_think(t_philo *philo);
