@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/19 02:57:30 by jekim             #+#    #+#             */
-/*   Updated: 2021/09/25 16:39:12 by jekim            ###   ########.fr       */
+/*   Updated: 2021/09/25 17:12:28 by jekim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ int	do_eat(t_philo *philo, t_data *data)
 {
 	philo->state = EAT;
 	print_messsage_stdout(philo);
-	get_sleep(data->time_to_eat, data, philo);
 	check_philo_health(philo, 1);
+	get_sleep(data->time_to_eat, data, philo);
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 02:20:43 by jekim             #+#    #+#             */
-/*   Updated: 2021/09/25 16:42:29 by jekim            ###   ########.fr       */
+/*   Updated: 2021/09/25 17:17:28 by jekim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,14 +34,13 @@ unsigned long	time_diff(struct timeval *start, struct timeval *end)
 
 int	check_philo_health(t_philo *philo, int eat_flag)
 {
-	static unsigned long	modf;
 	static struct timeval	former_tv;
 	struct timeval			now_tv;
 	unsigned long			now_time;
 
 	if (former_tv.tv_sec == 0 && former_tv.tv_usec == 0)
 		former_tv = philo->data->time_to_start_tv;
-	if ((modf++) % 2 == 0 || eat_flag == 1)
+	if (eat_flag == 1)
 	{
 		gettimeofday(&now_tv, NULL);
 		now_time = time_diff(&former_tv, &now_tv);
