@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 02:19:07 by jekim             #+#    #+#             */
-/*   Updated: 2021/10/03 04:34:03 by jekim            ###   ########seoul.kr  */
+/*   Updated: 2021/10/03 04:46:54 by jekim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ typedef struct s_philo
 	t_data			*data;
 	t_fork			*fork;
 	pthread_t		*tid;
+	pthread_mutex_t	philo_m;
 	int				id;
 	int				l_fork;
 	int				r_fork;

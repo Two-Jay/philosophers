@@ -6,17 +6,42 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/02 21:31:47 by jekim             #+#    #+#             */
-/*   Updated: 2021/10/03 04:12:42 by jekim            ###   ########seoul.kr  */
+/*   Updated: 2021/10/03 04:42:37 by jekim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int run_monitor(t_monitor *monitor)
+int	monitor_routine(void *mon)
 {
-	int ix;
+	t_monitor	*monitor;
+
+	monitor = (t_monitor *)mon;
+	while (1)
+	{
+		if ()
+		{
+			
+		}
+	}
+	return (NULL);
+}
+
+int	run_monitor(t_setting *set)
+{
+	int	ix;
+
 	ix = 0;
-	while ()
+	while (ix < set->data->number_of_philo)
+	{
+		pthread_create(set->monitor[ix].tid,
+			NULL,
+			monitor_routine,
+			(void *)&set->monitor[ix]);
+		pthread_detach(*set->monitor[ix].tid);
+		ix++;
+	}
+	return (0);
 }
 
 int	assign_monitor(t_setting *set)

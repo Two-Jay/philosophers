@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 02:19:10 by jekim             #+#    #+#             */
-/*   Updated: 2021/10/03 04:34:07 by jekim            ###   ########seoul.kr  */
+/*   Updated: 2021/10/03 04:52:50 by jekim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	run_philo(t_setting *set)
 	set->data->start_time = get_time();
 	while (ix < set->data->number_of_philo)
 	{
-		set->philo->number_of_time_must_eat
+		set->philo[ix].number_of_time_must_eat
 			= set->data->number_of_time_must_eat;
 		pthread_create(set->philo[ix].tid,
 			NULL,
