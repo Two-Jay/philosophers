@@ -6,11 +6,18 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/02 21:31:47 by jekim             #+#    #+#             */
-/*   Updated: 2021/10/03 02:00:05 by jekim            ###   ########seoul.kr  */
+/*   Updated: 2021/10/03 04:12:42 by jekim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+int run_monitor(t_monitor *monitor)
+{
+	int ix;
+	ix = 0;
+	while ()
+}
 
 int	assign_monitor(t_setting *set)
 {
@@ -35,7 +42,6 @@ int	assign_monitor(t_setting *set)
 }
 
 // 내일 해야할 것
-// 1. 시간관련 리펙
 // 2. 모니터 관련로직 구현
 // 3. 테스트
 // 미니쉘 : tty 관련 함수군 정리
