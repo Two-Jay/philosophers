@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 02:19:10 by jekim             #+#    #+#             */
-/*   Updated: 2021/10/03 05:29:13 by jekim            ###   ########seoul.kr  */
+/*   Updated: 2021/10/03 06:14:04 by jekim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,11 +25,16 @@ int	free_data(t_setting *set)
 	ix = 0;
 	while (ix < limit)
 	{
+		pthread_mutex_destroy(&set->philo[ix].philo_m);
 		pthread_join(*set->philo[ix].tid, NULL);
 		free(set->philo[ix].tid);
 		ix++;
 	}
 	free(set->philo);
+	ix = 0;
+	while (ix < limit)
+		free(set->monitor[ix++].tid);
+	free(set->monitor);
 	pthread_mutex_destroy(&set->data->isAnyoneDead_mtx);
 	free(set->data);
 	return (0);

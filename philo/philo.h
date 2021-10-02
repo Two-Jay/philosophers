@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 02:19:07 by jekim             #+#    #+#             */
-/*   Updated: 2021/10/03 05:34:12 by jekim            ###   ########seoul.kr  */
+/*   Updated: 2021/10/03 06:33:28 by jekim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,7 @@ typedef struct s_philo
 	int				r_fork;
 	unsigned long	last_eat_time;
 	int				number_of_time_must_eat;
+	int				is_over;
 	int				state;
 }	t_philo;
 
@@ -105,7 +106,6 @@ int				ft_isable_strtonbr(char *nbr);
 int				ft_atoi(const char *nptr);
 
 unsigned long	get_time(void);
-int				print_endmessage_stdout(t_philo *philo);
 void			*monitor_routine(void *mon);
 int				run_monitor(t_setting *set);
 int				assign_monitor(t_setting *set);

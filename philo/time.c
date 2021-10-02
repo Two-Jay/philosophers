@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 02:20:43 by jekim             #+#    #+#             */
-/*   Updated: 2021/10/03 05:34:35 by jekim            ###   ########seoul.kr  */
+/*   Updated: 2021/10/03 06:33:34 by jekim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,23 +44,16 @@ int	print_messsage_stdout(t_philo *philo)
 		msg = "is thinking.\n";
 	if (philo->state == END)
 		msg = "was eaten as the philo must eat.\n";
+	if (philo->state == DIE)
+		msg = "dead.\n";
 	pthread_mutex_lock(&(philo->data->isAnyoneDead_mtx));
 	printf("%lu ms %dth philo %s",
 		get_time() - philo->data->start_time,
 		philo->id,
 		msg);
-	// if (philo->data->isAnyoneDead == 0)
-	pthread_mutex_unlock(&(philo->data->isAnyoneDead_mtx));
-	return (0);
-}
-// 조건절 지워서 테스트 합니다.
-
-int print_endmessage_stdout(t_philo *philo)
-{
-	pthread_mutex_lock(&(philo->data->isAnyoneDead_mtx));
-	printf("%lu ms %dth philo dead",
-		get_time() - philo->data->start_time,
-		philo->id);
-	philo->data->isAnyoneDead++;
+	if (philo->state == DIE)
+		philo->data->isAnyoneDead++;
+	else
+		pthread_mutex_unlock(&(philo->data->isAnyoneDead_mtx));
 	return (0);
 }
