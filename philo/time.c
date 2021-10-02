@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 02:20:43 by jekim             #+#    #+#             */
-/*   Updated: 2021/10/03 04:12:06 by jekim            ###   ########seoul.kr  */
+/*   Updated: 2021/10/03 05:34:35 by jekim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	print_messsage_stdout(t_philo *philo)
 }
 // 조건절 지워서 테스트 합니다.
 
-int print_deadmessage_stdout(t_philo *philo)
+int print_endmessage_stdout(t_philo *philo)
 {
 	pthread_mutex_lock(&(philo->data->isAnyoneDead_mtx));
 	printf("%lu ms %dth philo dead",

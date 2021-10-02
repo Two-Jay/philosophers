@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/19 02:57:30 by jekim             #+#    #+#             */
-/*   Updated: 2021/10/03 04:50:16 by jekim            ###   ########seoul.kr  */
+/*   Updated: 2021/10/03 05:33:20 by jekim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,6 @@ int	do_sleep_think(t_philo *philo, t_data *data)
 int	do_eat(t_philo *philo, t_data *data)
 {
 	pthread_mutex_lock(&philo->philo_m);
-	if (data->number_of_philo == 1)
-		get_sleep(2147483600);
 	philo->state = EAT;
 	print_messsage_stdout(philo);
 	philo->last_eat_time = get_time();
@@ -61,6 +59,8 @@ void	*philo_routine(void *phl)
 	philo->last_eat_time = philo->data->start_time;
 	while (1)
 	{
+		if (philo->data->number_of_philo == 1)
+			get_sleep(2147483600);
 		if (take_forks(philo)
 			|| do_eat(philo, philo->data)
 			|| check_nbr_must_eat(philo)

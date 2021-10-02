@@ -6,7 +6,7 @@
 #    By: jekim <arabi1549@naver.com>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/29 16:43:27 by jekim             #+#    #+#              #
-#    Updated: 2021/09/25 17:32:37 by jekim            ###   ########.fr        #
+#    Updated: 2021/10/03 05:27:20 by jekim            ###   ########seoul.kr   #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ OBJ_DIR		=	./obj/
 P_FILE		=	philo.c \
 				utils.c \
 				time.c \
+				monitor.c \
 				behavior.c	\
 				behavior2.c	\
 				assignment.c \

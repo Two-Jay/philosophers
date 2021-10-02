@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 02:19:10 by jekim             #+#    #+#             */
-/*   Updated: 2021/10/03 04:52:50 by jekim            ###   ########seoul.kr  */
+/*   Updated: 2021/10/03 05:29:13 by jekim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ int	set_data(t_setting *set, int argc, char **argv)
 		|| assign_data(set, argc, argv)
 		|| assign_fork(set)
 		|| assign_philo(set)
+		|| assign_monitor(set)
 		|| validate_assigned_data(set))
 		return (ERROR_OCCURED);
 	return (0);
@@ -84,6 +85,7 @@ int	main(int argc, char **argv)
 
 	if (set_data(&set, argc, argv)
 		|| run_philo(&set)
+		|| run_monitor(&set)
 		|| check_isend(&set))
 		return (ft_strerr("Error\n"));
 	return (free_data(&set));

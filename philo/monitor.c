@@ -6,25 +6,30 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/02 21:31:47 by jekim             #+#    #+#             */
-/*   Updated: 2021/10/03 04:42:37 by jekim            ###   ########seoul.kr  */
+/*   Updated: 2021/10/03 05:34:16 by jekim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-int	monitor_routine(void *mon)
+void *monitor_routine(void *mon)
 {
-	t_monitor	*monitor;
+	t_monitor		*monitor;
+	unsigned long	limit;
 
 	monitor = (t_monitor *)mon;
+	limit = monitor->target_philo->data->time_to_die;
 	while (1)
 	{
-		if ()
+		pthread_mutex_lock(&monitor->target_philo->philo_m);
+		if (get_time() - monitor->target_philo->last_eat_time > limit)
 		{
-			
+			print_endmessage_stdout(monitor->target_philo);
+			return (0);
 		}
+		pthread_mutex_unlock(&monitor->target_philo->philo_m);
 	}
-	return (NULL);
+	return (0);
 }
 
 int	run_monitor(t_setting *set)
