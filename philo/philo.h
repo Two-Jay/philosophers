@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 02:19:07 by jekim             #+#    #+#             */
-/*   Updated: 2021/10/03 06:33:28 by jekim            ###   ########seoul.kr  */
+/*   Updated: 2021/10/03 06:45:27 by jekim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,10 +90,11 @@ int				take_forks(t_philo *philo);
 int				leave_forks(t_philo *philo);
 
 int				validate_argv(int argc, char **argv);
+int				validate_assigned_data(t_setting *set);
 int				assign_data(t_setting *set, int argc, char **argv);
 int				assign_philo(t_setting *set);
 int				assign_fork(t_setting *set);
-int				validate_assigned_data(t_setting *set);
+int				assign_monitor(t_setting *set);
 int				free_data(t_setting *set);
 
 int				print_messsage_stdout(t_philo *philo);
@@ -108,6 +109,6 @@ int				ft_atoi(const char *nptr);
 unsigned long	get_time(void);
 void			*monitor_routine(void *mon);
 int				run_monitor(t_setting *set);
-int				assign_monitor(t_setting *set);
+int				check_isend(t_setting *set);
 
 #endif

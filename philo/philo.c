@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 02:19:10 by jekim             #+#    #+#             */
-/*   Updated: 2021/10/03 06:14:04 by jekim            ###   ########seoul.kr  */
+/*   Updated: 2021/10/03 06:44:26 by jekim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,23 @@ int	free_data(t_setting *set)
 	return (0);
 }
 
+int	run_monitor(t_setting *set)
+{
+	int	ix;
+
+	ix = 0;
+	while (ix < set->data->number_of_philo)
+	{
+		pthread_create(set->monitor[ix].tid,
+			NULL,
+			monitor_routine,
+			(void *)&set->monitor[ix]);
+		pthread_detach(*set->monitor[ix].tid);
+		ix++;
+	}
+	return (0);
+}
+
 int	run_philo(t_setting *set)
 {
 	int				ix;
@@ -56,18 +73,6 @@ int	run_philo(t_setting *set)
 			(void *)&set->philo[ix]);
 		pthread_detach(*set->philo[ix].tid);
 		ix++;
-	}
-	return (0);
-}
-
-int	check_isend(t_setting *set)
-{
-	while (1)
-	{
-		if (set->data->isAnyoneDead
-			|| (set->data->number_of_done_to_eat == set->data->number_of_philo))
-			break ;
-		usleep(50);
 	}
 	return (0);
 }

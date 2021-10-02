@@ -6,7 +6,7 @@
 #    By: jekim <arabi1549@naver.com>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/29 16:43:27 by jekim             #+#    #+#              #
-#    Updated: 2021/10/03 05:27:20 by jekim            ###   ########seoul.kr   #
+#    Updated: 2021/10/03 06:40:24 by jekim            ###   ########seoul.kr   #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,10 +22,10 @@ OBJ_DIR		=	./obj/
 
 P_FILE		=	philo.c \
 				utils.c \
-				time.c \
+				utils2.c \
 				monitor.c \
-				behavior.c	\
-				behavior2.c	\
+				routine.c	\
+				routine2.c	\
 				assignment.c \
 
 P_OBJ_FILE	=	$(P_FILE:.c=.o)

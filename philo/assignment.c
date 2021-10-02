@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/19 01:52:06 by jekim             #+#    #+#             */
-/*   Updated: 2021/10/03 06:36:05 by jekim            ###   ########seoul.kr  */
+/*   Updated: 2021/10/03 06:39:20 by jekim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,18 +30,6 @@ int	assign_data(t_setting *set, int argc, char **argv)
 		set->data->number_of_time_must_eat = ft_atoi(argv[5]);
 		set->data->number_of_done_to_eat = 0;
 	}
-	return (0);
-}
-
-int	validate_assigned_data(t_setting *set)
-{
-	if (set->data->number_of_philo < 1
-		|| set->data->number_of_philo > 200
-		|| set->data->number_of_time_must_eat < -1
-		|| set->data->time_to_die < 60
-		|| set->data->time_to_eat < 60
-		|| set->data->time_to_sleep < 60)
-		return (ERROR_OCCURED);
 	return (0);
 }
 
@@ -94,24 +82,24 @@ int	assign_philo(t_setting *set)
 	return (0);
 }
 
-int	validate_argv(int argc, char **argv)
+int	assign_monitor(t_setting *set)
 {
 	int	ix;
-	int	ret;
+	int	limit;
 
-	if ((argc != 5 && argc != 6))
+	ix = 0;
+	limit = set->data->number_of_philo;
+	set->monitor = (t_monitor *)malloc(sizeof(t_monitor) * (limit));
+	if (!set->monitor)
 		return (ERROR_OCCURED);
-	ix = 1;
-	ret = 1;
-	while (ix < argc)
+	while (ix < limit)
 	{
-		if (argv[ix] && ft_isable_strtonbr(argv[ix]))
-			ix++;
-		else
-		{
-			ret--;
-			break ;
-		}
+		set->monitor[ix].tid = (pthread_t *)malloc(sizeof(pthread_t));
+		if (!set->monitor[ix].tid)
+			return (ERROR_OCCURED);
+		set->monitor[ix].target_philo = &(set->philo[ix]);
+		set->monitor[ix].id = ix + 1;
+		ix++;
 	}
-	return ((ix != argc));
+	return (0);
 }
