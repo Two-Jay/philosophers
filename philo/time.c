@@ -6,22 +6,11 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 02:20:43 by jekim             #+#    #+#             */
-/*   Updated: 2021/09/26 03:15:08 by jekim            ###   ########seoul.kr  */
+/*   Updated: 2021/10/03 04:03:14 by jekim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-unsigned long	time_from_start(t_data *data)
-{
-	struct timeval	now_tv;
-	struct timeval	start_tv;
-
-	start_tv = data->start_tv;
-	gettimeofday(&now_tv, NULL);
-	return (((now_tv.tv_sec - start_tv.tv_sec) * 1000)
-		+ ((now_tv.tv_usec - start_tv.tv_usec) / 1000));
-}
 
 unsigned long	time_diff(struct timeval *start, struct timeval *end)
 {
@@ -29,35 +18,43 @@ unsigned long	time_diff(struct timeval *start, struct timeval *end)
 		+ ((end->tv_usec - start->tv_usec) / 1000));
 }
 
-int	check_philo_health(t_philo *philo, int eat_flag)
+unsigned long	get_time(void)
 {
-	struct timeval			now_tv;
-	unsigned long			now_time;
+	struct timeval nowtv;
 
-	gettimeofday(&now_tv, NULL);
-	now_time = time_diff(&philo->lasteat_tv, &now_tv);
-	if (now_time > philo->data->time_to_die)
-	{
-		philo->state = DIE;
-		philo->data->isAnyoneDead++;
-		print_messsage_stdout(philo);
-		leave_forks(philo);
-		return (1);
-	}
-	if (eat_flag == 1)
-		philo->lasteat_tv = now_tv;
-	return (0);
+	gettimeofday(&nowtv, NULL);
+	return ((nowtv.tv_sec * 1000) +(nowtv.tv_usec / 1000));
 }
 
-int	get_sleep(unsigned long sleep_time, t_data *data, t_philo *philo)
+// int	check_philo_health(t_philo *philo, int eat_flag)
+// {
+// 	struct timeval			now_tv;
+// 	unsigned long			now_time;
+
+// 	gettimeofday(&now_tv, NULL);
+// 	now_time = time_diff(&philo->lasteat_tv, &now_tv);
+// 	if (now_time > philo->data->time_to_die)
+// 	{
+// 		philo->state = DIE;
+// 		philo->data->isAnyoneDead++;
+// 		print_messsage_stdout(philo);
+// 		leave_forks(philo);
+// 		return (1);
+// 	}
+// 	if (eat_flag == 1)
+// 		philo->lasteat_tv = now_tv;
+// 	return (0);
+// }
+
+int	get_sleep(unsigned long sleep_time)
 {
 	unsigned long		target_time;
 
-	target_time = sleep_time+ time_from_start(data);
-	while (target_time > time_from_start(data))
+	target_time = sleep_time + get_time();
+	while (target_time > get_time())
 	{
-		if (check_philo_health(philo, 0))
-			return (1);
+		// if (check_philo_health(philo, 0))
+		// 	return (1);
 	}
 	return (0);
 }
@@ -80,7 +77,7 @@ int	print_messsage_stdout(t_philo *philo)
 		msg = "died.\n";
 	pthread_mutex_lock(&(philo->data->isAnyoneDead_mtx));
 	printf("%lu ms %dth philo %s",
-		time_from_start(philo->data),
+		get_time() - philo->data->start_time,
 		philo->id,
 		msg);
 	if (philo->data->isAnyoneDead == 0)

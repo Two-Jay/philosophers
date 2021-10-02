@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 02:19:10 by jekim             #+#    #+#             */
-/*   Updated: 2021/09/26 03:10:39 by jekim            ###   ########seoul.kr  */
+/*   Updated: 2021/10/03 04:00:14 by jekim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,9 @@ int	free_data(t_setting *set)
 int	run_philo(t_setting *set)
 {
 	int				ix;
-	struct timeval	start;
 
 	ix = 0;
-	gettimeofday(&start, NULL);
-	set->data->start_tv = start;
+	set->data->start_time = get_time();
 	while (ix < set->data->number_of_philo)
 	{
 		pthread_create(set->philo[ix].tid,
