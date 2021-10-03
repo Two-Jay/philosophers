@@ -6,29 +6,45 @@
 #    By: jekim <arabi1549@naver.com>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/29 16:43:27 by jekim             #+#    #+#              #
-#    Updated: 2021/10/03 07:06:48 by jekim            ###   ########seoul.kr   #
+#    Updated: 2021/10/03 07:04:39 by jekim            ###   ########seoul.kr   #
 #                                                                              #
 # **************************************************************************** #
 
-PHILO_DIR		= ./philo/
-PHILO_BONUS_DIR = ./philo/philo_bonus
+NAME		=	philo_bonus
 
-all			:
-		@$(MAKE) -C $(PHILO_DIR)
+CC			=	gcc
+CCFLAG		=	-Wall -Wextra -Werror
+PTHRDFLAG	=	-lpthread
+G			=	-g
+INCLUDE		=	-I.
 
-bonus		:
-		@$(MAKE) -C $(PHILO_BONUS_DIR)
+OBJ_DIR		=	./obj/
+
+P_FILE		=	philo_bonus.c
+
+P_OBJ_FILE	=	$(P_FILE:.c=.o)
+P_OBJ		=	$(addprefix $(OBJ_DIR), $(P_OBJ_FILE))
+
+all			:	$(NAME)
+
+$(OBJ_DIR)%.o : ./%.c
+	@mkdir -p $(OBJ_DIR)
+	@$(CC) $(G) $(CCFLAG) $(INCLUDE) $< -c -o $@
+
+$(NAME)		:	$(P_OBJ)
+	@$(CC) $(G) $(CCFLAG) $(P_OBJ) $(PTHRDFLAG)  $(INCLUDE) -o $@
+	@echo "\033[0;92m* $(NAME) program file was created *\033[0m"
 
 clean		:
-		@$(MAKE) -C $(PHILO_DIR) clean
-		@$(MAKE) -C $(PHILO_BONUS_DIR) clean
+	@rm -rf $(OBJ_DIR)
+	@echo "\033[0;91m* $(NAME)'s object files were removed* \033[0m"
 
-fclean		:
-		@$(MAKE) -C $(PHILO_DIR) fclean
-		@$(MAKE) -C $(PHILO_BONUS_DIR) fclean
+
+fclean		:	clean
+	@rm -f $(NAME)
+	@echo "\033[0;91m* $(NAME) were removed* \033[0m"
+
 
 re			:	fclean all
-
-rebonus		:	fclean bonus
 
 .PHONY: all, clean, fclean, re

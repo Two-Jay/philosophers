@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 02:19:07 by jekim             #+#    #+#             */
-/*   Updated: 2021/10/03 06:45:27 by jekim            ###   ########seoul.kr  */
+/*   Updated: 2021/10/03 07:07:56 by jekim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ typedef struct s_setting
 }	t_setting;
 
 void			*philo_routine(void *phl);
+void			*monitor_routine(void *mon);
 
 int				do_sleep_think(t_philo *philo, t_data *data);
 int				do_eat(t_philo *philo, t_data *data);
@@ -107,7 +108,6 @@ int				ft_isable_strtonbr(char *nbr);
 int				ft_atoi(const char *nptr);
 
 unsigned long	get_time(void);
-void			*monitor_routine(void *mon);
 int				run_monitor(t_setting *set);
 int				check_isend(t_setting *set);
 
