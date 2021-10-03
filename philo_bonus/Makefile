@@ -6,7 +6,7 @@
 #    By: jekim <arabi1549@naver.com>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/29 16:43:27 by jekim             #+#    #+#              #
-#    Updated: 2021/10/04 02:14:51 by jekim            ###   ########seoul.kr   #
+#    Updated: 2021/10/04 02:33:19 by jekim            ###   ########seoul.kr   #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,9 @@ INCLUDE		=	-I.
 
 OBJ_DIR		=	./obj/
 
-P_FILE		=	philo_bonus.c
+P_FILE		=	philo_bonus.c \
+				assignment.c \
+				utils.c 
 
 P_OBJ_FILE	=	$(P_FILE:.c=.o)
 P_OBJ		=	$(addprefix $(OBJ_DIR), $(P_OBJ_FILE))
