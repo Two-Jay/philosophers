@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/03 07:07:11 by jekim             #+#    #+#             */
-/*   Updated: 2021/10/03 07:13:51 by jekim            ###   ########seoul.kr  */
+/*   Updated: 2021/10/04 02:15:44 by jekim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ typedef struct s_philo
 
 typedef struct s_monitor
 {
-	pid_t		tid;
+	pid_t		pid;
 	t_philo		*target_philo;
 	int			id;
 }	t_monitor;
