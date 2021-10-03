@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/03 07:07:11 by jekim             #+#    #+#             */
-/*   Updated: 2021/10/04 02:30:39 by jekim            ###   ########seoul.kr  */
+/*   Updated: 2021/10/04 05:11:10 by jekim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ typedef struct s_setting
 }	t_setting;
 
 int	assign_data(t_setting *set, int argc, char **argv);
+int	assign_philo(t_setting *set);
 int	validate_argv(int argc, char **argv);
 int	validate_assigned_data(t_setting *set);
 

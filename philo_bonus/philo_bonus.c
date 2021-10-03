@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/03 07:04:42 by jekim             #+#    #+#             */
-/*   Updated: 2021/10/04 02:34:12 by jekim            ###   ########seoul.kr  */
+/*   Updated: 2021/10/04 02:35:14 by jekim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@ int	assign_setting(t_setting *set, int argc, char **argv)
 {
 	if (validate_argv(argc, argv)
 		|| assign_data(set, argc, argv)
-		|| validate_assigned_data(set))
+		|| validate_assigned_data(set)
+		|| assign_philo(set))
 		return (ERROR_OCCURED);
 	return (0);
 }
