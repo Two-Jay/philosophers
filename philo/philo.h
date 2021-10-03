@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 02:19:07 by jekim             #+#    #+#             */
-/*   Updated: 2021/10/03 07:07:56 by jekim            ###   ########seoul.kr  */
+/*   Updated: 2021/10/04 05:22:34 by jekim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <sys/time.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <string.h>
 # include <pthread.h>
 
 # define ERROR_OCCURED 1

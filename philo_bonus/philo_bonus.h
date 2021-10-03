@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/03 07:07:11 by jekim             #+#    #+#             */
-/*   Updated: 2021/10/04 05:11:10 by jekim            ###   ########seoul.kr  */
+/*   Updated: 2021/10/04 05:14:55 by jekim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@
 # include <stdio.h>
 # include <sys/time.h>
 # include <sys/types.h>
+# include <pthread.h>
+# include <semaphore.h>
 # include <stdlib.h>
 # include <unistd.h>
 
@@ -79,6 +81,8 @@ int	assign_data(t_setting *set, int argc, char **argv);
 int	assign_philo(t_setting *set);
 int	validate_argv(int argc, char **argv);
 int	validate_assigned_data(t_setting *set);
+
+int run_philo(t_setting *set);
 
 int	ft_strlen(char *s);
 int	ft_strerr(char *err);

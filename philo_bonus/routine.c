@@ -1,33 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_bonus.c                                      :+:      :+:    :+:   */
+/*   routine.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/10/03 07:04:42 by jekim             #+#    #+#             */
-/*   Updated: 2021/10/04 05:14:12 by jekim            ###   ########seoul.kr  */
+/*   Created: 2021/10/04 05:14:22 by jekim             #+#    #+#             */
+/*   Updated: 2021/10/04 05:17:58 by jekim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
 
-int	assign_setting(t_setting *set, int argc, char **argv)
+int run_philo(t_setting *set)
 {
-	if (validate_argv(argc, argv)
-		|| assign_data(set, argc, argv)
-		|| validate_assigned_data(set)
-		|| assign_philo(set))
-		return (ERROR_OCCURED);
-	return (0);
-}
-
-int	main(int argc, char **argv)
-{
-	t_setting	set;
-
-	if (assign_setting(&set, argc, argv)
-		|| run_philo(&set))
-		ft_strerr("Error\n");
 	return (0);
 }

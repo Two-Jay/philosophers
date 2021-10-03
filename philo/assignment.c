@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/19 01:52:06 by jekim             #+#    #+#             */
-/*   Updated: 2021/10/03 06:39:20 by jekim            ###   ########seoul.kr  */
+/*   Updated: 2021/10/04 05:22:11 by jekim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,16 +57,15 @@ int	assign_philo(t_setting *set)
 {
 	int		ix;
 	int		nbr_philo;
-	t_state	stat;
 
 	ix = 0;
 	nbr_philo = set->data->number_of_philo;
-	stat = 0;
 	set->philo = (t_philo *)malloc(sizeof(t_philo) * (nbr_philo));
 	if (!set->philo)
 		return (ERROR_OCCURED);
 	while (ix < nbr_philo)
 	{
+		memset(&set->philo[ix], 0, sizeof(t_philo));
 		set->philo[ix].data = set->data;
 		set->philo[ix].fork = set->fork;
 		set->philo[ix].tid = (pthread_t *)malloc(sizeof(pthread_t));
@@ -74,9 +73,6 @@ int	assign_philo(t_setting *set)
 			return (ERROR_OCCURED);
 		pthread_mutex_init(&set->philo[ix].philo_m, NULL);
 		set->philo[ix].id = ix + 1;
-		set->philo[ix].l_fork = 0;
-		set->philo[ix].r_fork = 0;
-		set->philo[ix].state = stat;
 		ix++;
 	}
 	return (0);

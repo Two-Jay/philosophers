@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 02:11:02 by jekim             #+#    #+#             */
-/*   Updated: 2021/10/04 05:10:50 by jekim            ###   ########seoul.kr  */
+/*   Updated: 2021/10/04 05:20:34 by jekim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,11 +44,9 @@ int	assign_philo(t_setting *set)
 		return (ERROR_OCCURED);
 	while (ix < set->data->number_of_philo)
 	{
+		memset(&set->philo[ix], 0, sizeof(philo));
 		set->philo[ix].data = set->data;
 		set->philo[ix].id = ix + 1;
-		set->philo[ix].l_fork = 0;
-		set->philo[ix].r_fork = 0;
-		set->philo[ix].is_over = 0;
 		set->philo[ix].state = state;
 		ix++;
 	}
