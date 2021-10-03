@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/03 07:07:11 by jekim             #+#    #+#             */
-/*   Updated: 2021/10/04 05:14:55 by jekim            ###   ########seoul.kr  */
+/*   Updated: 2021/10/04 05:23:44 by jekim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <sys/types.h>
 # include <pthread.h>
 # include <semaphore.h>
+# include <string.h>
 # include <stdlib.h>
 # include <unistd.h>
 
