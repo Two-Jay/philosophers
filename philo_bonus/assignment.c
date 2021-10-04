@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 02:11:02 by jekim             #+#    #+#             */
-/*   Updated: 2021/10/05 00:05:26 by jekim            ###   ########seoul.kr  */
+/*   Updated: 2021/10/05 00:41:19 by jekim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	assign_data(t_setting *set, int argc, char **argv)
 	return (0);
 }
 
-int	assign_philo(t_setting *set)
+int	assign_philo(t_setting *set, int argc, char **argv)
 {
 	int		ix;
 	t_state	state;
@@ -45,6 +45,9 @@ int	assign_philo(t_setting *set)
 	while (ix < set->data->number_of_philo)
 	{
 		memset(&set->philo[ix], 0, sizeof(t_philo));
+		set->data->number_of_time_must_eat = -1;
+		if (argc == 6)
+			set->data->number_of_time_must_eat = ft_atoi(argv[5]);
 		set->philo[ix].data = set->data;
 		set->philo[ix].id = ix + 1;
 		set->philo[ix].state = state;

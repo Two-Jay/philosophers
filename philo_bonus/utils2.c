@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 02:20:43 by jekim             #+#    #+#             */
-/*   Updated: 2021/10/05 00:05:10 by jekim            ###   ########seoul.kr  */
+/*   Updated: 2021/10/05 00:35:34 by jekim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,5 +61,28 @@ int	validate_assigned_data(t_setting *set)
 		|| set->data->time_to_eat < 60
 		|| set->data->time_to_sleep < 60)
 		return (ERROR_OCCURED);
+	return (0);
+}
+
+int	print_message_stdout(t_philo *philo, t_state state)
+{
+	char	*msg;
+
+	if (state == FORK)
+		msg = "has taken a fork.\n";
+	if (state == EAT)
+		msg = "is eating.\n";
+	if (state == SLEEP)
+		msg = "is sleeping.\n";
+	if (state == THINK)
+		msg = "is thinking.\n";
+	if (state == END)
+		msg = "was eaten as the philo must eat.\n";
+	if (state == DIE)
+		msg = "dead.\n";
+	printf("%lu ms %dth philo %s",
+		get_time() - philo->data->start_time,
+		philo->id,
+		msg);
 	return (0);
 }

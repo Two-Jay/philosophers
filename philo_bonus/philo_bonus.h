@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/03 07:07:11 by jekim             #+#    #+#             */
-/*   Updated: 2021/10/05 00:04:23 by jekim            ###   ########seoul.kr  */
+/*   Updated: 2021/10/05 00:42:49 by jekim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ typedef struct s_philo
 	int				l_fork;
 	int				r_fork;
 	unsigned long	last_eat_time;
+	int				number_of_time_must_eat;
 	int				is_over;
 	int				state;
 }	t_philo;
@@ -80,7 +81,7 @@ typedef struct s_setting
 }	t_setting;
 
 int				assign_data(t_setting *set, int argc, char **argv);
-int				assign_philo(t_setting *set);
+int				assign_philo(t_setting *set, int argc, char **argv);
 int				validate_argv(int argc, char **argv);
 int				validate_assigned_data(t_setting *set);
 
@@ -95,5 +96,13 @@ int				ft_strerr(char *err);
 int				ft_isspace(char ch);
 int				ft_isable_strtonbr(char *nbr);
 int				ft_atoi(const char *nptr);
+
+int				take_forks(t_philo *philo);
+int				leave_forks(t_philo *philo);
+int				do_sleep_think(t_philo *philo, t_data *data);
+int				do_eat(t_philo *philo, t_data *data);
+int				check_nbr_must_eat(t_philo *philo);
+int				philo_routine(t_philo *philo);
+int				print_message_stdout(t_philo *philo, t_state state);
 
 #endif

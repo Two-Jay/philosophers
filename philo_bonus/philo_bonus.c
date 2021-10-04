@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/03 07:04:42 by jekim             #+#    #+#             */
-/*   Updated: 2021/10/05 00:12:03 by jekim            ###   ########seoul.kr  */
+/*   Updated: 2021/10/05 00:39:44 by jekim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ int	run_philo(t_setting *set)
 	int	ix;
 
 	ix = 0;
+	set->data->start_time = get_time();
 	while (ix < set->data->number_of_philo)
 	{
 		set->philo[ix].pid = fork();
@@ -38,7 +39,7 @@ int	assign_setting(t_setting *set, int argc, char **argv)
 	if (validate_argv(argc, argv)
 		|| assign_data(set, argc, argv)
 		|| validate_assigned_data(set)
-		|| assign_philo(set))
+		|| assign_philo(set, argc, argv))
 		return (ERROR_OCCURED);
 	return (0);
 }
