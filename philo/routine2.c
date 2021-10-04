@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   behavior2.c                                        :+:      :+:    :+:   */
+/*   routine2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 14:39:02 by jekim             #+#    #+#             */
-/*   Updated: 2021/10/03 06:35:35 by jekim            ###   ########seoul.kr  */
+/*   Updated: 2021/10/05 00:20:31 by jekim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@ void	take_lfork(t_philo *philo)
 	pthread_mutex_lock(&lfork->fork_m);
 	philo->l_fork = lfork->id;
 	lfork->grabbedby = philo->id;
-	philo->state = FORK;
-	print_messsage_stdout(philo);
+	print_message_stdout(philo, FORK);
 }
 
 void	take_rfork(t_philo *philo)
@@ -32,8 +31,7 @@ void	take_rfork(t_philo *philo)
 	pthread_mutex_lock(&rfork->fork_m);
 	philo->r_fork = rfork->id;
 	rfork->grabbedby = philo->id;
-	philo->state = FORK;
-	print_messsage_stdout(philo);
+	print_message_stdout(philo, FORK);
 }
 
 int	take_forks(t_philo *philo)

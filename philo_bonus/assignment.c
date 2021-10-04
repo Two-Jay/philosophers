@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 02:11:02 by jekim             #+#    #+#             */
-/*   Updated: 2021/10/04 05:20:34 by jekim            ###   ########seoul.kr  */
+/*   Updated: 2021/10/05 00:05:26 by jekim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,45 +44,11 @@ int	assign_philo(t_setting *set)
 		return (ERROR_OCCURED);
 	while (ix < set->data->number_of_philo)
 	{
-		memset(&set->philo[ix], 0, sizeof(philo));
+		memset(&set->philo[ix], 0, sizeof(t_philo));
 		set->philo[ix].data = set->data;
 		set->philo[ix].id = ix + 1;
 		set->philo[ix].state = state;
 		ix++;
 	}
-	return (0);
-}
-
-int	validate_argv(int argc, char **argv)
-{
-	int	ix;
-	int	ret;
-
-	if ((argc != 5 && argc != 6))
-		return (ERROR_OCCURED);
-	ix = 1;
-	ret = 1;
-	while (ix < argc)
-	{
-		if (argv[ix] && ft_isable_strtonbr(argv[ix]))
-			ix++;
-		else
-		{
-			ret--;
-			break ;
-		}
-	}
-	return ((ix != argc));
-}
-
-int	validate_assigned_data(t_setting *set)
-{
-	if (set->data->number_of_philo < 1
-		|| set->data->number_of_philo > 200
-		|| set->data->number_of_time_must_eat < -1
-		|| set->data->time_to_die < 60
-		|| set->data->time_to_eat < 60
-		|| set->data->time_to_sleep < 60)
-		return (ERROR_OCCURED);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 02:19:07 by jekim             #+#    #+#             */
-/*   Updated: 2021/10/04 05:22:34 by jekim            ###   ########seoul.kr  */
+/*   Updated: 2021/10/05 00:20:30 by jekim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ typedef struct s_philo
 	unsigned long	last_eat_time;
 	int				number_of_time_must_eat;
 	int				is_over;
-	int				state;
 }	t_philo;
 
 typedef struct s_monitor
@@ -99,7 +98,7 @@ int				assign_fork(t_setting *set);
 int				assign_monitor(t_setting *set);
 int				free_data(t_setting *set);
 
-int				print_messsage_stdout(t_philo *philo);
+int				print_message_stdout(t_philo *philo, t_state state);
 int				get_sleep(unsigned long target_time);
 
 int				ft_strlen(char *s);

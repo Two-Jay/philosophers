@@ -6,11 +6,32 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/03 07:04:42 by jekim             #+#    #+#             */
-/*   Updated: 2021/10/04 05:14:12 by jekim            ###   ########seoul.kr  */
+/*   Updated: 2021/10/05 00:12:03 by jekim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo_bonus.h"
+
+int	run_philo(t_setting *set)
+{
+	int	ix;
+
+	ix = 0;
+	while (ix < set->data->number_of_philo)
+	{
+		set->philo[ix].pid = fork();
+		if (set->philo[ix].pid < 0)
+			return (1);
+		if (set->philo[ix].pid == 0)
+		{
+			philo_routine(&set->philo[ix]);
+			exit(0);
+		}
+		usleep(100);
+		ix++;
+	}
+	return (0);
+}
 
 int	assign_setting(t_setting *set, int argc, char **argv)
 {

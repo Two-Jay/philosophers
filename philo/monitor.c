@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/02 21:31:47 by jekim             #+#    #+#             */
-/*   Updated: 2021/10/04 02:12:36 by jekim            ###   ########seoul.kr  */
+/*   Updated: 2021/10/05 00:20:29 by jekim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,7 @@ void	*monitor_routine(void *mon)
 			return (0);
 		if (get_time() - monitor->target_philo->last_eat_time > limit)
 		{
-			monitor->target_philo->state = DIE;
-			print_messsage_stdout(monitor->target_philo);
+			print_message_stdout(monitor->target_philo, DIE);
 			return (0);
 		}
 		pthread_mutex_unlock(&monitor->target_philo->philo_m);

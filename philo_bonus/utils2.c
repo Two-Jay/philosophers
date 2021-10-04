@@ -6,11 +6,11 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 02:20:43 by jekim             #+#    #+#             */
-/*   Updated: 2021/10/05 00:20:32 by jekim            ###   ########seoul.kr  */
+/*   Updated: 2021/10/05 00:05:10 by jekim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "philo_bonus.h"
 
 unsigned long	get_time(void)
 {
@@ -27,34 +27,6 @@ int	get_sleep(unsigned long sleep_time)
 	target_time = sleep_time + get_time();
 	while (target_time > get_time())
 		;
-	return (0);
-}
-
-int	print_message_stdout(t_philo *philo, t_state state)
-{
-	char	*msg;
-
-	if (state == FORK)
-		msg = "has taken a fork.\n";
-	if (state == EAT)
-		msg = "is eating.\n";
-	if (state == SLEEP)
-		msg = "is sleeping.\n";
-	if (state == THINK)
-		msg = "is thinking.\n";
-	if (state == END)
-		msg = "was eaten as the philo must eat.\n";
-	if (state == DIE)
-		msg = "dead.\n";
-	pthread_mutex_lock(&(philo->data->isAnyoneDead_mtx));
-	printf("%lu ms %dth philo %s",
-		get_time() - philo->data->start_time,
-		philo->id,
-		msg);
-	if (state == DIE)
-		philo->data->isAnyoneDead++;
-	else
-		pthread_mutex_unlock(&(philo->data->isAnyoneDead_mtx));
 	return (0);
 }
 
