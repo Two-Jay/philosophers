@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/02 21:31:47 by jekim             #+#    #+#             */
-/*   Updated: 2021/10/13 21:17:42 by jekim            ###   ########.fr       */
+/*   Updated: 2021/10/13 21:24:51 by jekim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,16 +36,16 @@ int	print_end_message_stdout(t_philo *philo)
 
 void	*monitor_routine(void *set)
 {
-	int				ix;
+	unsigned int	ix;
 	unsigned long	limit;
 	t_setting		*setting;
 
 	setting = (t_setting *)set;
 	limit = setting->data->time_to_die;
 	ix = 0;
-	while (1)
+	while (++ix >= 0)
 	{
-		if (ix == setting->data->number_of_philo)
+		if (ix == (unsigned int)setting->data->number_of_philo)
 			ix = 0;
 		if (setting->data->number_of_done_to_eat
 			== setting->data->number_of_philo)
@@ -59,9 +59,6 @@ void	*monitor_routine(void *set)
 			return (0);
 		}
 		usleep(200);
-		ix++;
 	}	
 	return (0);
 }
-
-
