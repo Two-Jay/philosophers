@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 14:39:02 by jekim             #+#    #+#             */
-/*   Updated: 2021/09/25 17:35:57 by jekim            ###   ########.fr       */
+/*   Updated: 2021/09/28 20:31:13 by jekim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	take_lfork(t_philo *philo)
 	pthread_mutex_lock(&lfork->fork_m);
 	philo->l_fork = lfork->id;
 	lfork->grabbedby = philo->id;
+	philo->state = FORK;
+	print_messsage_stdout(philo);
 }
 
 void	take_rfork(t_philo *philo)
@@ -30,6 +32,8 @@ void	take_rfork(t_philo *philo)
 	pthread_mutex_lock(&rfork->fork_m);
 	philo->r_fork = rfork->id;
 	rfork->grabbedby = philo->id;
+	philo->state = FORK;
+	print_messsage_stdout(philo);
 }
 
 int	take_forks(t_philo *philo)
@@ -44,8 +48,6 @@ int	take_forks(t_philo *philo)
 		take_rfork(philo);
 		take_lfork(philo);
 	}
-	philo->state = FORK;
-	print_messsage_stdout(philo);
 	return (0);
 }
 
