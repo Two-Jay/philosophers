@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 02:20:43 by jekim             #+#    #+#             */
-/*   Updated: 2021/10/13 20:48:19 by jekim            ###   ########.fr       */
+/*   Updated: 2021/10/13 21:19:59 by jekim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	get_sleep(unsigned long sleep_time)
 
 	target_time = sleep_time + get_time();
 	while (target_time > get_time())
-		;
+		usleep(200);
 	return (0);
 }
 
@@ -35,19 +35,18 @@ int	print_message_stdout(t_philo *philo, t_state state)
 	char	*msg;
 
 	if (state == FORK)
-		msg = "has taken a fork.";
+		msg = "has taken a fork";
 	if (state == EAT)
-		msg = "is eating.       ";
+		msg = "is eating";
 	if (state == SLEEP)
-		msg = "is sleeping.     ";
+		msg = "is sleeping";
 	if (state == THINK)
-		msg = "is thinking.     ";
+		msg = "is thinking";
 	pthread_mutex_lock(&(philo->data->print_m));
-	printf("%lu ms %dth philo %s        [%d]\n",
+	printf("%lu %d %s\n",
 		get_time() - philo->data->start_time,
 		philo->id,
-		msg,
-		philo->eat_cnt);
+		msg);
 	pthread_mutex_unlock(&(philo->data->print_m));
 	return (0);
 }

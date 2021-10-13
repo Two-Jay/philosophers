@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 02:19:07 by jekim             #+#    #+#             */
-/*   Updated: 2021/10/13 20:48:08 by jekim            ###   ########.fr       */
+/*   Updated: 2021/10/13 20:52:38 by jekim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ typedef struct s_philo
 	int				r_fork;
 	unsigned long	last_eat_time;
 	int				eat_cnt;
-	int				number_of_time_must_eat;
 	int				is_over;
 }	t_philo;
 

@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/19 01:52:06 by jekim             #+#    #+#             */
-/*   Updated: 2021/10/13 20:48:30 by jekim            ###   ########.fr       */
+/*   Updated: 2021/10/13 21:14:51 by jekim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,6 @@ int	assign_philo(t_setting *set)
 		memset(&set->philo[ix], 0, sizeof(t_philo));
 		set->philo[ix].data = set->data;
 		set->philo[ix].fork = set->fork;
-		set->philo[ix].number_of_time_must_eat = set->data->number_of_done_to_eat;
 		set->philo[ix].tid = (pthread_t *)malloc(sizeof(pthread_t));
 		if (!set->philo[ix].tid)
 			return (ERROR_OCCURED);

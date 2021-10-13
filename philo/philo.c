@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 02:19:10 by jekim             #+#    #+#             */
-/*   Updated: 2021/10/13 20:48:25 by jekim            ###   ########.fr       */
+/*   Updated: 2021/10/13 21:16:17 by jekim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,14 +56,12 @@ int	run_philo(t_setting *set)
 	{
 		set->philo[ix].last_eat_time
 			= set->data->start_time;
-		set->philo[ix].number_of_time_must_eat
-			= set->data->number_of_time_must_eat;
 		pthread_create(set->philo[ix].tid,
 			NULL,
 			philo_routine,
 			(void *)&set->philo[ix]);
 		pthread_detach(*set->philo[ix].tid);
-		usleep(50);
+		usleep(200);
 		ix++;
 	}
 	return (run_monitor(set));
