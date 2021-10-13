@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/04 05:14:22 by jekim             #+#    #+#             */
-/*   Updated: 2021/10/05 00:46:33 by jekim            ###   ########seoul.kr  */
+/*   Updated: 2021/10/13 18:43:48 by jekim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,8 +80,7 @@ int	philo_routine(t_philo *philo)
 	philo->is_over = 0;
 	while (1)
 	{
-		if (philo->data->number_of_philo == 1)
-			get_sleep(2147483600);
+
 		if (take_forks(philo)
 			|| do_eat(philo, philo->data)
 			|| check_nbr_must_eat(philo)

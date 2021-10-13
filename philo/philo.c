@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 02:19:10 by jekim             #+#    #+#             */
-/*   Updated: 2021/10/13 16:51:37 by jekim            ###   ########.fr       */
+/*   Updated: 2021/10/13 18:50:24 by jekim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,7 @@ int	free_data(t_setting *set)
 		ix++;
 	}
 	free(set->philo);
-	ix = 0;
-	while (ix < limit)
-		free(set->monitor[ix++].tid);
-	free(set->monitor);
+	free(set->monitor_tid);
 	pthread_mutex_destroy(&set->data->isAnyoneDead_mtx);
 	free(set->data);
 	return (0);
@@ -42,19 +39,11 @@ int	free_data(t_setting *set)
 
 int	run_monitor(t_setting *set)
 {
-	int	ix;
-
-	ix = 0;
-	while (ix < set->data->number_of_philo)
-	{
-		pthread_create(set->monitor[ix].tid,
-			NULL,
-			monitor_routine,
-			(void *)&set->monitor[ix]);
-		pthread_detach(*set->monitor[ix].tid);
-		usleep(50);
-		ix++;
-	}
+	pthread_create(set->monitor_tid,
+		NULL,
+		monitor_routine,
+		(void *)&set);
+	pthread_join(*set->monitor_tid, NULL);
 	return (0);
 }
 
@@ -76,7 +65,7 @@ int	run_philo(t_setting *set)
 		usleep(50);
 		ix++;
 	}
-	return (0);
+	return (run_monitor(set));
 }
 
 int	set_data(t_setting *set, int argc, char **argv)
@@ -96,9 +85,7 @@ int	main(int argc, char **argv)
 	t_setting	set;
 
 	if (set_data(&set, argc, argv)
-		|| run_philo(&set)
-		|| run_monitor(&set)
-		|| check_isend(&set))
+		|| run_philo(&set))
 		return (ft_strerr("Error\n"));
 	return (free_data(&set));
 }

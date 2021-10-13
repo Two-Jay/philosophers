@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/19 01:52:06 by jekim             #+#    #+#             */
-/*   Updated: 2021/10/04 05:22:11 by jekim            ###   ########seoul.kr  */
+/*   Updated: 2021/10/13 18:13:48 by jekim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,22 +80,8 @@ int	assign_philo(t_setting *set)
 
 int	assign_monitor(t_setting *set)
 {
-	int	ix;
-	int	limit;
-
-	ix = 0;
-	limit = set->data->number_of_philo;
-	set->monitor = (t_monitor *)malloc(sizeof(t_monitor) * (limit));
-	if (!set->monitor)
+	set->monitor_tid = (pthread_t *)malloc(sizeof(pthread_t));
+	if (!set->monitor_tid)
 		return (ERROR_OCCURED);
-	while (ix < limit)
-	{
-		set->monitor[ix].tid = (pthread_t *)malloc(sizeof(pthread_t));
-		if (!set->monitor[ix].tid)
-			return (ERROR_OCCURED);
-		set->monitor[ix].target_philo = &(set->philo[ix]);
-		set->monitor[ix].id = ix + 1;
-		ix++;
-	}
 	return (0);
 }

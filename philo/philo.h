@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 02:19:07 by jekim             #+#    #+#             */
-/*   Updated: 2021/10/05 00:37:38 by jekim            ###   ########seoul.kr  */
+/*   Updated: 2021/10/13 18:43:12 by jekim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,19 +66,12 @@ typedef struct s_philo
 	int				is_over;
 }	t_philo;
 
-typedef struct s_monitor
-{
-	pthread_t	*tid;
-	t_philo		*target_philo;
-	int			id;
-}	t_monitor;
-
 typedef struct s_setting
 {
 	t_data		*data;
 	t_philo		*philo;
 	t_fork		*fork;
-	t_monitor	*monitor;
+	pthread_t	*monitor_tid;
 }	t_setting;
 
 void			*philo_routine(void *phl);

@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 02:20:43 by jekim             #+#    #+#             */
-/*   Updated: 2021/10/05 00:20:32 by jekim            ###   ########seoul.kr  */
+/*   Updated: 2021/10/13 18:38:07 by jekim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	print_message_stdout(t_philo *philo, t_state state)
 		msg);
 	if (state == DIE)
 		philo->data->isAnyoneDead++;
-	else
+	if (philo->data->isAnyoneDead == 0)
 		pthread_mutex_unlock(&(philo->data->isAnyoneDead_mtx));
 	return (0);
 }
