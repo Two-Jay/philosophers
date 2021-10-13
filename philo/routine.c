@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/19 02:57:30 by jekim             #+#    #+#             */
-/*   Updated: 2021/10/13 18:44:44 by jekim            ###   ########.fr       */
+/*   Updated: 2021/10/13 19:02:41 by jekim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ void	*philo_routine(void *phl)
 	t_philo	*philo;
 
 	philo = (t_philo *)phl;
-	philo->last_eat_time = philo->data->start_time;
 	philo->is_over = 0;
 	while (1)
 	{

@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 02:19:07 by jekim             #+#    #+#             */
-/*   Updated: 2021/10/13 18:43:12 by jekim            ###   ########.fr       */
+/*   Updated: 2021/10/13 19:12:35 by jekim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,13 @@
 # include <unistd.h>
 # include <string.h>
 # include <pthread.h>
+
+
+# define trs(x...) { printf("[%s:%d] %s = ", __func__, __LINE__, #x); printf("%s\n", x); }
+# define trc(x...) { printf("[%s:%d] %s = ", __func__, __LINE__, #x); printf("%c\n", x); }
+# define tri(x...) { printf("[%s:%d] %s = ", __func__, __LINE__, #x); printf("%d\n", x); }
+# define trp(x...) { printf("[%s:%d] %s = ", __func__, __LINE__, #x); printf("%p\n", x); }
+
 
 # define ERROR_OCCURED 1
 
@@ -57,7 +64,7 @@ typedef struct s_philo
 	t_data			*data;
 	t_fork			*fork;
 	pthread_t		*tid;
-	pthread_mutex_t	philo_m;
+	t_state			state;
 	int				id;
 	int				l_fork;
 	int				r_fork;
@@ -103,5 +110,6 @@ int				ft_atoi(const char *nptr);
 unsigned long	get_time(void);
 int				run_monitor(t_setting *set);
 int				check_isend(t_setting *set);
+int	print_die_message_stdout(t_philo *philo);
 
 #endif

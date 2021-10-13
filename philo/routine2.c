@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 14:39:02 by jekim             #+#    #+#             */
-/*   Updated: 2021/10/13 16:40:43 by jekim            ###   ########.fr       */
+/*   Updated: 2021/10/13 19:06:22 by jekim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ int	leave_forks(t_philo *philo)
 	t_fork	*rfork;
 	t_fork	*lfork;
 
-	pthread_mutex_lock(&philo->philo_m);
 	lfork = &philo->fork[philo->id - 1];
 	rfork = &philo->fork[philo->id % philo->data->number_of_philo];
 	rfork->grabbedby = 0;
@@ -63,6 +62,5 @@ int	leave_forks(t_philo *philo)
 	lfork->grabbedby = 0;
 	philo->l_fork = 0;
 	pthread_mutex_unlock(&lfork->fork_m);
-	pthread_mutex_unlock(&philo->philo_m);
 	return (0);
 }

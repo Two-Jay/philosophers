@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/19 01:52:06 by jekim             #+#    #+#             */
-/*   Updated: 2021/10/13 18:13:48 by jekim            ###   ########.fr       */
+/*   Updated: 2021/10/13 19:25:13 by jekim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,6 @@ int	assign_philo(t_setting *set)
 		set->philo[ix].tid = (pthread_t *)malloc(sizeof(pthread_t));
 		if (!set->philo[ix].tid)
 			return (ERROR_OCCURED);
-		pthread_mutex_init(&set->philo[ix].philo_m, NULL);
 		set->philo[ix].id = ix + 1;
 		ix++;
 	}

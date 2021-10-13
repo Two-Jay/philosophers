@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 02:20:43 by jekim             #+#    #+#             */
-/*   Updated: 2021/10/13 18:38:07 by jekim            ###   ########.fr       */
+/*   Updated: 2021/10/13 19:04:38 by jekim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,22 @@ int	print_message_stdout(t_philo *philo, t_state state)
 		msg);
 	if (state == DIE)
 		philo->data->isAnyoneDead++;
-	if (philo->data->isAnyoneDead == 0)
+	else
 		pthread_mutex_unlock(&(philo->data->isAnyoneDead_mtx));
+	return (0);
+}
+
+int	print_die_message_stdout(t_philo *philo)
+{
+	char	*msg;
+
+	msg = "dead.\n";
+	pthread_mutex_lock(&(philo->data->isAnyoneDead_mtx));
+	printf("%lu ms %dth philo %s",
+		get_time() - philo->data->start_time,
+		philo->id,
+		msg);
+	philo->data->isAnyoneDead++;
 	return (0);
 }
 
