@@ -5,12 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/09/18 23:07:15 by jekim             #+#    #+#             */
-/*   Updated: 2021/10/05 00:20:31 by jekim            ###   ########seoul.kr  */
+/*   Created: 2021/10/04 02:30:04 by jekim             #+#    #+#             */
+/*   Updated: 2021/10/04 02:33:00 by jekim            ###   ########seoul.kr  */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "philo.h"
+#include "philo_bonus.h"
 
 int	ft_strlen(char *s)
 {

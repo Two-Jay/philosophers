@@ -6,11 +6,11 @@
 #    By: jekim <arabi1549@naver.com>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/06/29 16:43:27 by jekim             #+#    #+#              #
-#    Updated: 2021/10/03 06:40:24 by jekim            ###   ########seoul.kr   #
+#    Updated: 2021/10/05 00:03:11 by jekim            ###   ########seoul.kr   #
 #                                                                              #
 # **************************************************************************** #
 
-NAME		=	philo
+NAME		=	philo_bonus
 
 CC			=	gcc
 CCFLAG		=	-Wall -Wextra -Werror
@@ -20,13 +20,11 @@ INCLUDE		=	-I.
 
 OBJ_DIR		=	./obj/
 
-P_FILE		=	philo.c \
-				utils.c \
-				utils2.c \
-				monitor.c \
-				routine.c	\
-				routine2.c	\
+P_FILE		=	philo_bonus.c \
 				assignment.c \
+				routine.c \
+				utils.c \
+				utils2.c 
 
 P_OBJ_FILE	=	$(P_FILE:.c=.o)
 P_OBJ		=	$(addprefix $(OBJ_DIR), $(P_OBJ_FILE))

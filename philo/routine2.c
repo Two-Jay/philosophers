@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   behavior2.c                                        :+:      :+:    :+:   */
+/*   routine2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/21 14:39:02 by jekim             #+#    #+#             */
-/*   Updated: 2021/09/28 20:31:13 by jekim            ###   ########.fr       */
+/*   Updated: 2021/10/13 16:40:43 by jekim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,7 @@ void	take_lfork(t_philo *philo)
 	pthread_mutex_lock(&lfork->fork_m);
 	philo->l_fork = lfork->id;
 	lfork->grabbedby = philo->id;
-	philo->state = FORK;
-	print_messsage_stdout(philo);
+	print_message_stdout(philo, FORK);
 }
 
 void	take_rfork(t_philo *philo)
@@ -32,8 +31,7 @@ void	take_rfork(t_philo *philo)
 	pthread_mutex_lock(&rfork->fork_m);
 	philo->r_fork = rfork->id;
 	rfork->grabbedby = philo->id;
-	philo->state = FORK;
-	print_messsage_stdout(philo);
+	print_message_stdout(philo, FORK);
 }
 
 int	take_forks(t_philo *philo)
@@ -56,6 +54,7 @@ int	leave_forks(t_philo *philo)
 	t_fork	*rfork;
 	t_fork	*lfork;
 
+	pthread_mutex_lock(&philo->philo_m);
 	lfork = &philo->fork[philo->id - 1];
 	rfork = &philo->fork[philo->id % philo->data->number_of_philo];
 	rfork->grabbedby = 0;
@@ -64,5 +63,6 @@ int	leave_forks(t_philo *philo)
 	lfork->grabbedby = 0;
 	philo->l_fork = 0;
 	pthread_mutex_unlock(&lfork->fork_m);
+	pthread_mutex_unlock(&philo->philo_m);
 	return (0);
 }
