@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/19 02:57:30 by jekim             #+#    #+#             */
-/*   Updated: 2021/10/13 19:02:41 by jekim            ###   ########.fr       */
+/*   Updated: 2021/10/13 20:49:33 by jekim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,21 +25,7 @@ int	do_eat(t_philo *philo, t_data *data)
 	print_message_stdout(philo, EAT);
 	philo->last_eat_time = get_time();
 	get_sleep(data->time_to_eat);
-	return (0);
-}
-
-int	check_nbr_must_eat(t_philo *philo)
-{
-	if (philo->number_of_time_must_eat == 0)
-	{
-		print_message_stdout(philo, END);
-		leave_forks(philo);
-		philo->is_over++;
-		philo->data->number_of_done_to_eat++;
-		return (1);
-	}
-	else if (philo->number_of_time_must_eat > 0)
-		philo->number_of_time_must_eat -= 1;
+	philo->eat_cnt++;
 	return (0);
 }
 
@@ -53,10 +39,9 @@ void	*philo_routine(void *phl)
 	{
 		if (take_forks(philo)
 			|| do_eat(philo, philo->data)
-			|| check_nbr_must_eat(philo)
 			|| leave_forks(philo)
 			|| do_sleep_think(philo, philo->data))
-			break ;
+			return (NULL);
 	}
 	return (NULL);
 }

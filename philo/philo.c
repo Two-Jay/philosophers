@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 02:19:10 by jekim             #+#    #+#             */
-/*   Updated: 2021/10/13 19:25:04 by jekim            ###   ########.fr       */
+/*   Updated: 2021/10/13 20:48:25 by jekim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	free_data(t_setting *set)
 		free(set->philo[ix].tid);
 		ix++;
 	}
-	pthread_mutex_destroy(&set->data->isAnyoneDead_mtx);
+	pthread_mutex_destroy(&set->data->print_m);
 	free(set->philo);
 	free(set->monitor_tid);
 	free(set->data);
@@ -55,7 +55,7 @@ int	run_philo(t_setting *set)
 	while (ix < set->data->number_of_philo)
 	{
 		set->philo[ix].last_eat_time
-			= set->data->start_time; 
+			= set->data->start_time;
 		set->philo[ix].number_of_time_must_eat
 			= set->data->number_of_time_must_eat;
 		pthread_create(set->philo[ix].tid,

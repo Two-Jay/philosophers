@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 02:19:07 by jekim             #+#    #+#             */
-/*   Updated: 2021/10/13 19:12:35 by jekim            ###   ########.fr       */
+/*   Updated: 2021/10/13 20:48:08 by jekim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,10 @@
 # include <string.h>
 # include <pthread.h>
 
-
 # define trs(x...) { printf("[%s:%d] %s = ", __func__, __LINE__, #x); printf("%s\n", x); }
 # define trc(x...) { printf("[%s:%d] %s = ", __func__, __LINE__, #x); printf("%c\n", x); }
 # define tri(x...) { printf("[%s:%d] %s = ", __func__, __LINE__, #x); printf("%d\n", x); }
 # define trp(x...) { printf("[%s:%d] %s = ", __func__, __LINE__, #x); printf("%p\n", x); }
-
 
 # define ERROR_OCCURED 1
 
@@ -54,7 +52,7 @@ typedef struct s_data
 	unsigned long	time_to_sleep;
 	unsigned long	start_time;
 	int				isAnyoneDead;
-	pthread_mutex_t	isAnyoneDead_mtx;
+	pthread_mutex_t	print_m;
 	int				number_of_time_must_eat;
 	int				number_of_done_to_eat;
 }	t_data;
@@ -69,6 +67,7 @@ typedef struct s_philo
 	int				l_fork;
 	int				r_fork;
 	unsigned long	last_eat_time;
+	int				eat_cnt;
 	int				number_of_time_must_eat;
 	int				is_over;
 }	t_philo;
@@ -110,6 +109,6 @@ int				ft_atoi(const char *nptr);
 unsigned long	get_time(void);
 int				run_monitor(t_setting *set);
 int				check_isend(t_setting *set);
-int	print_die_message_stdout(t_philo *philo);
+int				print_die_message_stdout(t_philo *philo);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/19 01:52:06 by jekim             #+#    #+#             */
-/*   Updated: 2021/10/13 19:25:13 by jekim            ###   ########.fr       */
+/*   Updated: 2021/10/13 20:48:30 by jekim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	assign_data(t_setting *set, int argc, char **argv)
 	set->data->time_to_eat = ft_atoi(argv[3]);
 	set->data->time_to_sleep = ft_atoi(argv[4]);
 	set->data->isAnyoneDead = 0;
-	pthread_mutex_init(&set->data->isAnyoneDead_mtx, NULL);
+	pthread_mutex_init(&set->data->print_m, NULL);
 	set->data->number_of_time_must_eat = -1;
 	set->data->number_of_done_to_eat = -1;
 	if (argc == 6)
@@ -68,6 +68,7 @@ int	assign_philo(t_setting *set)
 		memset(&set->philo[ix], 0, sizeof(t_philo));
 		set->philo[ix].data = set->data;
 		set->philo[ix].fork = set->fork;
+		set->philo[ix].number_of_time_must_eat = set->data->number_of_done_to_eat;
 		set->philo[ix].tid = (pthread_t *)malloc(sizeof(pthread_t));
 		if (!set->philo[ix].tid)
 			return (ERROR_OCCURED);

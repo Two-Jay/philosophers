@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 02:20:43 by jekim             #+#    #+#             */
-/*   Updated: 2021/10/13 19:04:38 by jekim            ###   ########.fr       */
+/*   Updated: 2021/10/13 20:48:19 by jekim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,40 +35,20 @@ int	print_message_stdout(t_philo *philo, t_state state)
 	char	*msg;
 
 	if (state == FORK)
-		msg = "has taken a fork.\n";
+		msg = "has taken a fork.";
 	if (state == EAT)
-		msg = "is eating.\n";
+		msg = "is eating.       ";
 	if (state == SLEEP)
-		msg = "is sleeping.\n";
+		msg = "is sleeping.     ";
 	if (state == THINK)
-		msg = "is thinking.\n";
-	if (state == END)
-		msg = "was eaten as the philo must eat.\n";
-	if (state == DIE)
-		msg = "dead.\n";
-	pthread_mutex_lock(&(philo->data->isAnyoneDead_mtx));
-	printf("%lu ms %dth philo %s",
+		msg = "is thinking.     ";
+	pthread_mutex_lock(&(philo->data->print_m));
+	printf("%lu ms %dth philo %s        [%d]\n",
 		get_time() - philo->data->start_time,
 		philo->id,
-		msg);
-	if (state == DIE)
-		philo->data->isAnyoneDead++;
-	else
-		pthread_mutex_unlock(&(philo->data->isAnyoneDead_mtx));
-	return (0);
-}
-
-int	print_die_message_stdout(t_philo *philo)
-{
-	char	*msg;
-
-	msg = "dead.\n";
-	pthread_mutex_lock(&(philo->data->isAnyoneDead_mtx));
-	printf("%lu ms %dth philo %s",
-		get_time() - philo->data->start_time,
-		philo->id,
-		msg);
-	philo->data->isAnyoneDead++;
+		msg,
+		philo->eat_cnt);
+	pthread_mutex_unlock(&(philo->data->print_m));
 	return (0);
 }
 
