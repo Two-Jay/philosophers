@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/02 21:31:47 by jekim             #+#    #+#             */
-/*   Updated: 2021/10/13 21:24:51 by jekim            ###   ########.fr       */
+/*   Updated: 2021/10/14 19:51:09 by jekim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@ void	*monitor_routine(void *set)
 			print_die_message_stdout(&setting->philo[ix]);
 			return (0);
 		}
-		usleep(200);
+		usleep(100);
 	}	
 	return (0);
 }

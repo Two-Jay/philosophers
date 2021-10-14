@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 02:19:10 by jekim             #+#    #+#             */
-/*   Updated: 2021/10/13 21:16:17 by jekim            ###   ########.fr       */
+/*   Updated: 2021/10/14 19:51:16 by jekim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ int	run_philo(t_setting *set)
 			philo_routine,
 			(void *)&set->philo[ix]);
 		pthread_detach(*set->philo[ix].tid);
-		usleep(200);
+		usleep(100);
 		ix++;
 	}
 	return (run_monitor(set));

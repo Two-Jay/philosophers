@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/19 02:57:30 by jekim             #+#    #+#             */
-/*   Updated: 2021/10/13 21:19:08 by jekim            ###   ########.fr       */
+/*   Updated: 2021/10/14 19:50:52 by jekim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	*philo_routine(void *phl)
 			|| leave_forks(philo)
 			|| do_sleep_think(philo, philo->data))
 			return (NULL);
-		usleep(200);
+		usleep(100);
 	}
 	return (NULL);
 }

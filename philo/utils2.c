@@ -6,7 +6,7 @@
 /*   By: jekim <arabi1549@naver.com>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/17 02:20:43 by jekim             #+#    #+#             */
-/*   Updated: 2021/10/13 21:23:02 by jekim            ###   ########.fr       */
+/*   Updated: 2021/10/14 19:49:29 by jekim            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,21 +35,22 @@ int	print_message_stdout(t_philo *philo, t_state state)
 	char	*msg;
 
 	if (state == FORK)
-		msg = "has taken a fork";
+		msg = "has taken a fork\n";
 	if (state == EAT)
-		msg = "is eating";
+		msg = "is eating\n";
 	if (state == SLEEP)
-		msg = "is sleeping";
+		msg = "is sleeping\n";
 	if (state == THINK)
-		msg = "is thinking";
+		msg = "is thinking\n";
 	pthread_mutex_lock(&(philo->data->print_m));
-	printf("%lu %d %s\n",
+	printf("%lu %d %s",
 		get_time() - philo->data->start_time,
 		philo->id,
 		msg);
 	pthread_mutex_unlock(&(philo->data->print_m));
 	return (0);
 }
+
 
 int	validate_argv(int argc, char **argv)
 {
